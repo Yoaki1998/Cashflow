@@ -1,5 +1,6 @@
 class MovesController < ApplicationController
   def index
+    @blop = ["lolo","lulu","dodo","pipi"]
   end
 
   def new

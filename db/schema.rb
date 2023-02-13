@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
   create_table "moves", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "version"
     t.integer "amount"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false

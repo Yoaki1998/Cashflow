@@ -1,4 +1,8 @@
 class MovesController < ApplicationController
+
+  before_action :set_user, only: [:create, :index]
+  before_action :find_move, only: [:show, :edit, :update, :destroy]
+
   def index
     @moves = Move.all 
     cashflow()
@@ -6,7 +10,6 @@ class MovesController < ApplicationController
   end
 
   def show
-    @move = Move.find(params[:id])
   end
 
   def new
@@ -14,27 +17,22 @@ class MovesController < ApplicationController
   end
   
   def create
-    @user = current_user
     @move = Move.new(move_params)
-    @move.amount = @move.amount.to_i
     @move.user_id = @user.id
     @move.save
     redirect_to moves_path
   end
 
   def edit
-    @move = Move.find(params[:id])
   end
 
   def update
-    @move = Move.find(params[:id])
     @move.update(move_params)
     redirect_to moves_path
     
   end
 
   def destroy
-    @move = Move.find(params[:id])
     @move.destroy
     redirect_to move_path(@move),status: :see_other
   end
@@ -48,25 +46,26 @@ class MovesController < ApplicationController
 
   def cashflow
     cf = 0
-    @user = current_user
-    Move.all.each do |move|
-      cf += move.amount
-    end
+    Move.all.each { |move| cf += move.amount}
     @user.cashflow = cf
     @user.save  
   end
 
   def epargne
     ep = 0
-    @user = current_user
     Move.all.each do |move| 
-      if move.version == "epargne"
-        ep += move.amount
-      end
+      move.version == "epargne" ? ep += move.amount : ""
     end
     @user.epargne = ep
     @user.save 
   end
   
+  def set_user
+    @user = current_user
+  end
+
+  def find_move
+    @move = Move.find(params[:id])
+  end  
 
 end

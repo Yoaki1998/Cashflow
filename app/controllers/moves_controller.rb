@@ -4,7 +4,8 @@ class MovesController < ApplicationController
   before_action :find_move, only: [:show, :edit, :update, :destroy]
 
   def index
-    @moves = Move.all 
+    @moves = []
+    Move.all.each { |move| move.user_id == current_user.id ? @moves << move : "" }
     cashflow()
     epargne()
     epargne_goal()
@@ -47,7 +48,7 @@ class MovesController < ApplicationController
 
   def cashflow
     cf = 0
-    Move.all.each { |move| cf += move.amount}
+    Move.all.each { |move| move.user_id == current_user.id ? cf += move.amount : "" }
     @user.cashflow = cf
     @user.save  
   end
@@ -55,7 +56,7 @@ class MovesController < ApplicationController
   def epargne
     ep = 0
     Move.all.each do |move| 
-      move.version == "epargne" ? ep += move.amount : ""
+      move.version == "epargne" && move.user_id == current_user.id ? ep += move.amount : ""
     end
     @user.epargne = ep
     @user.save 
@@ -64,7 +65,7 @@ class MovesController < ApplicationController
   def epargne_goal
     revenu = 0
     Move.all.each do |move|
-      move.amount > 0 && move.version != "epargne"  ? revenu += move.amount : "" 
+      move.amount > 0 && move.version != "epargne" && move.user_id == current_user.id  ? revenu += move.amount : "" 
     end
     @goal = (revenu * 0.2).truncate 
   end

@@ -7,6 +7,7 @@ class MovesController < ApplicationController
     @moves = Move.all 
     cashflow()
     epargne()
+    epargne_goal()
   end
 
   def show
@@ -59,7 +60,15 @@ class MovesController < ApplicationController
     @user.epargne = ep
     @user.save 
   end
-  
+
+  def epargne_goal
+    revenu = 0
+    Move.all.each do |move|
+      move.amount > 0 ? revenu += move.amount : "" 
+    end
+    @goal = revenu * 0.2  
+  end
+
   def set_user
     @user = current_user
   end

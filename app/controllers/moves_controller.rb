@@ -1,8 +1,10 @@
 class MovesController < ApplicationController
-
+  #Crée une instance d'utilisateur
   before_action :set_user, only: [:create, :index]
+  #Trouve un move a partir d'un ID
   before_action :find_move, only: [:show, :edit, :update, :destroy]
 
+  #Affiche tout les moves appartenant a l'utilisateur actuellement connecté + invoque les fonction neccésaire sur la home page
   def index
     @moves = []
     Move.all.each { |move| move.user_id == current_user.id ? @moves << move : "" }
@@ -18,6 +20,7 @@ class MovesController < ApplicationController
     @move = Move.new
   end
   
+  #Crée un nouveau move ( mouvement d'argent ) et l'enregiste en BDD + redirige sur la home
   def create
     @move = Move.new(move_params)
     @move.user_id = @user.id
@@ -28,12 +31,14 @@ class MovesController < ApplicationController
   def edit
   end
 
+  #Update un move ( mouvement d'argent ) + redirige sur la home
   def update
     @move.update(move_params)
     redirect_to moves_path
     
   end
 
+  #Detruit un nouveau move ( mouvement d'argent ) + redirige sur la home
   def destroy
     @move.destroy
     redirect_to move_path(@move),status: :see_other
@@ -42,10 +47,12 @@ class MovesController < ApplicationController
 
   private
 
+  #Verification avec des paramètre fort
   def move_params
     params.require(:move).permit(:name, :version, :amount)
   end
 
+  #Calcule le cashflow de l'utilisateur actuel et l'enregiste en BDD
   def cashflow
     cf = 0
     Move.all.each { |move| move.user_id == current_user.id ? cf += move.amount : "" }
@@ -53,6 +60,7 @@ class MovesController < ApplicationController
     @user.save  
   end
 
+  #Calcule l'epargne de l'utilisateur actuel et l'enregiste en BDD
   def epargne
     ep = 0
     Move.all.each do |move| 
@@ -62,6 +70,7 @@ class MovesController < ApplicationController
     @user.save 
   end
 
+  #Calcule l'objectif d'épargne de l'utilisateur actuel
   def epargne_goal
     revenu = 0
     Move.all.each do |move|

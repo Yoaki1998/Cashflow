@@ -1,6 +1,8 @@
 class MovesController < ApplicationController
   def index
     @moves = Move.all 
+    cashflow()
+    epargne()
   end
 
   def show
@@ -43,5 +45,28 @@ class MovesController < ApplicationController
   def move_params
     params.require(:move).permit(:name, :version, :amount)
   end
+
+  def cashflow
+    cf = 0
+    @user = current_user
+    Move.all.each do |move|
+      cf += move.amount
+    end
+    @user.cashflow = cf
+    @user.save  
+  end
+
+  def epargne
+    ep = 0
+    @user = current_user
+    Move.all.each do |move| 
+      if move.version == "epargne"
+        ep += move.amount
+      end
+    end
+    @user.epargne = ep
+    @user.save 
+  end
+  
 
 end

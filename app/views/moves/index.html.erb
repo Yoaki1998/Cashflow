@@ -1,5 +1,7 @@
-<h1>Moves#index</h1>
-<p>Find me in app/views/moves/index.html.erb</p>
+<h1>Cashflow</h1>
+<h1> <%= @user.cashflow %> </h1>
+<h2>Epargne</h2>
+<h2> <%= @user.epargne %> </h2>
 <%= link_to "Nouveau flux", new_move_path  %>
 <ol>
     <% @moves.each do |move| %>

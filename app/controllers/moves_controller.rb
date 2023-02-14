@@ -64,9 +64,9 @@ class MovesController < ApplicationController
   def epargne_goal
     revenu = 0
     Move.all.each do |move|
-      move.amount > 0 ? revenu += move.amount : "" 
+      move.amount > 0 && move.version != "epargne"  ? revenu += move.amount : "" 
     end
-    @goal = revenu * 0.2  
+    @goal = (revenu * 0.2).truncate 
   end
 
   def set_user

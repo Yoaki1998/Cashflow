@@ -5,11 +5,13 @@
 <%= link_to "Nouveau flux", new_move_path  %>
 <ol>
     <% @moves.each do |move| %>
-        <li>
-            <%= move.name %> <%= move.version %> <%= move.amount %> 
-            <%= link_to "show", move_path(move) %>  
-            <%= link_to "edit", edit_move_path(move.id)  %> 
-            <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
-        </li>
+        <% if move.user_id = @user.id %>
+            <li>
+                <%= move.name %> <%= move.version %> <%= move.amount %> 
+                <%= link_to "show", move_path(move) %>  
+                <%= link_to "edit", edit_move_path(move.id)  %> 
+                <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
+            </li>
+        <%end%>
     <% end %>
 </ol>

@@ -1,2 +1,11 @@
 <h1>Moves#edit</h1>
 <p>Find me in app/views/moves/edit.html.erb</p>
+<%= form_with model: @move do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :type %>
+  <%= f.text_field :version %>
+  <%= f.label :amount %>
+  <%= f.number_field :amount %>
+  <%= f.submit %>
+<% end %>

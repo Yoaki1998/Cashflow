@@ -17,7 +17,7 @@ class MovesController < ApplicationController
     @move.amount = @move.amount.to_i
     @move.user_id = @user.id
     @move.save
-    redirect_to move_path(@move)
+    redirect_to moves_path
   end
 
   def edit
@@ -27,7 +27,7 @@ class MovesController < ApplicationController
   def update
     @move = Move.find(params[:id])
     @move.update(move_params)
-    redirect_to move_path(@move)
+    redirect_to moves_path
     
   end
 

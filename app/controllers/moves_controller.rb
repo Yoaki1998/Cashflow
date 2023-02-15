@@ -58,7 +58,7 @@ class MovesController < ApplicationController
   #Calcule le cashflow de l'utilisateur actuel et l'enregiste en BDD
   def cashflow
     cf = 0
-    Move.all.each { |move| move.user_id == current_user.id ? cf += move.amount : "" }
+    Move.all.each { |move| move.user_id == current_user.id && move.version != "epargne" ? cf += move.amount : "" }
     @user.cashflow = cf
     @user.save  
   end

@@ -11,6 +11,20 @@ Move.destroy_all
 
 puts "Creating moves..."
 
+user = User.new
+user.email = 'yoakiniscoise@gmail.com  '
+user.password = 'b1a3c41e'
+user.password_confirmation = 'b1a3c41e'
+user.save!
+
+user = User.new
+user.email = 'yoyo@gmail.com  '
+user.password = 'ouioui'
+user.password_confirmation = 'ouioui'
+user.save!
+
+
+
 Move.create(name:"Salaire dev", amount:3200, version:"salaire", user_id:1, date: DateTime.now)
 Move.create(name:"Sizebusiness", amount:1200, version:"salaire", user_id:1, date: DateTime.now)
 Move.create(name:"Course", amount:-150, version:"depense", user_id:1, date: DateTime.now)

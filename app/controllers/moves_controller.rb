@@ -58,40 +58,26 @@ class MovesController < ApplicationController
   #Calcule le cashflow de l'utilisateur actuel et l'enregiste en BDD
   def cashflow
     cf = 0
-
-
     Move.all.each do |move| 
       if move.user_id == current_user.id 
         case move.version
         when "Revenu régulier" 
-          puts ("Nom:#{move.name}         Somme:#{move.amount}")
           cf += move.amount
-          puts cf
         when "Revenu ponctuel"
-          puts ("Nom:#{move.name}         Somme:#{move.amount}")
           cf += move.amount
-          puts cf
         when "Dépense régulière" 
-          puts ("Nom:#{move.name}         Somme:#{move.amount}")
           cf -= move.amount
-          puts cf
         when "Dépense ponctuelle"
-          puts ("Nom:#{move.name}         Somme:#{move.amount}")
           cf -= move.amount
-          puts cf
         when "Investissement bouriser"
           puts move.amount
           cf -= (move.amount * 0.7) 
-          puts cf
         when "Epargne"
           epargne_goal()
-          puts ("Nom:#{move.name}         Somme:#{move.amount}")
           @user.epargne < @goal ?  cf -= move.amount :  cf += move.amount
-          puts cf
         end
       end
-    end
-    
+    end 
     @user.cashflow = cf
     @user.save  
   end
@@ -100,7 +86,7 @@ class MovesController < ApplicationController
   def epargne
     ep = 0
     Move.all.each do |move| 
-      move.version == "epargne" && move.user_id == current_user.id ? ep += move.amount : ""
+      move.version == "Epargne" && move.user_id == current_user.id ? ep += move.amount : ""
     end
     @user.epargne = ep
     @user.save 
@@ -110,7 +96,7 @@ class MovesController < ApplicationController
   def epargne_goal
     revenu = 0
     Move.all.each do |move|
-      move.amount > 0 && move.version != "epargne" && move.user_id == current_user.id  ? revenu += move.amount : "" 
+      move.amount > 0 && move.version != "Epargne" && move.user_id == current_user.id  ? revenu += move.amount : "" 
     end
     @goal = (revenu * 0.2).truncate 
   end

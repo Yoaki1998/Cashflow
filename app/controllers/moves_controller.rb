@@ -7,7 +7,7 @@ class MovesController < ApplicationController
   #Affiche tout les moves appartenant a l'utilisateur actuellement connecté + invoque les fonction neccésaire sur la home page
   def index
     @moves = []
-    Move.all.each { |move| move.user_id == current_user.id ? @moves << move : "" }
+    Move.all.each { |move| move.user_id == current_user.id && move.date.to_date.month == DateTime.now.to_date.month ? @moves << move : "" }
     cashflow()
     epargne()
     epargne_goal()
@@ -23,7 +23,9 @@ class MovesController < ApplicationController
   #Crée un nouveau move ( mouvement d'argent ) et l'enregiste en BDD + redirige sur la home
   def create
     @move = Move.new(move_params)
+    @move.date = DateTime.now
     @move.user_id = @user.id
+    puts @move
     @move.save
     redirect_to moves_path
   end
@@ -34,6 +36,7 @@ class MovesController < ApplicationController
   #Update un move ( mouvement d'argent ) + redirige sur la home
   def update
     @move.update(move_params)
+    @move.updated_at = DateTime.now
     redirect_to moves_path
     
   end

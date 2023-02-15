@@ -4,6 +4,7 @@ class CreateMoves < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :version
       t.integer :amount
+      t.datetime :date, default: DateTime.now
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

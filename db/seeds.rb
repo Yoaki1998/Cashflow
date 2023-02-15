@@ -25,19 +25,20 @@ user.save!
 
 
 
-Move.create(name:"Salaire dev", amount:3200, version:"salaire", user_id:1, date: DateTime.now)
-Move.create(name:"Sizebusiness", amount:1200, version:"salaire", user_id:1, date: DateTime.now)
-Move.create(name:"Course", amount:-150, version:"depense", user_id:1, date: DateTime.now)
-Move.create(name:"Essence", amount:-320, version:"depense", user_id:1, date: DateTime.now)
-Move.create(name:"Réparation", amount:-300, version:"depense", user_id:1, date: DateTime.now)
-Move.create(name:"Loyer", amount:-1200, version:"depense", user_id:1, date: DateTime.now)
-Move.create(name:"Epargne", amount:500, version:"epargne", user_id:1, date: DateTime.now)
-Move.create(name:"Salaire dev", amount:2600, version:"salaire", user_id:2, date: DateTime.now)
-Move.create(name:"Sizebusiness", amount:700, version:"salaire", user_id:2, date: DateTime.now)
-Move.create(name:"Course", amount:-150, version:"depense", user_id:2, date: DateTime.now)
-Move.create(name:"Essence", amount:-320, version:"depense", user_id:2, date: DateTime.now)
-Move.create(name:"Loisir", amount:-80, version:"depense", user_id:2, date: DateTime.now)
-Move.create(name:"Loyer", amount:-700, version:"depense", user_id:2, date: DateTime.now)
-Move.create(name:"Epargne", amount:500, version:"epargne", user_id:2, date: DateTime.now)
+Move.create(name:"Salaire dev", amount:3200, version:"Revenu régulier", user_id:1, date: DateTime.now)
+Move.create(name:"Sizebusiness", amount:1200, version:"Revenu régulier", user_id:1, date: DateTime.now)
+Move.create(name:"Course", amount:150, version:"Dépense régulière", user_id:1, date: DateTime.now)
+Move.create(name:"Essence", amount:320, version:"Dépense régulière", user_id:1, date: DateTime.now)
+Move.create(name:"Réparation", amount:300, version:"Dépense ponctuelle", user_id:1, date: DateTime.now)
+Move.create(name:"Loyer", amount:1200, version:"Dépense régulière", user_id:1, date: DateTime.now)
+Move.create(name:"Epargne", amount:500, version:"Epargne", user_id:1, date: DateTime.now)
+
+Move.create(name:"Salaire dev", amount:2600, version:"Revenu régulier", user_id:2, date: DateTime.now)
+Move.create(name:"Sizebusiness", amount:700, version:"Revenu régulier", user_id:2, date: DateTime.now)
+Move.create(name:"Course", amount:150, version:"Dépense régulière", user_id:2, date: DateTime.now)
+Move.create(name:"Essence", amount:320, version:"Dépense régulière", user_id:2, date: DateTime.now)
+Move.create(name:"Loisir", amount:80, version:"Dépense régulière", user_id:2, date: DateTime.now)
+Move.create(name:"Loyer", amount:700, version:"Dépense régulière", user_id:2, date: DateTime.now)
+Move.create(name:"Epargne", amount:500, version:"Epargne", user_id:2, date: DateTime.now)
 
 puts "Finished!"

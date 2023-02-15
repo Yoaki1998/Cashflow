@@ -1,13 +1,14 @@
 <h2> User id: <%= @user.id %></h2>
 <h1>Cashflow</h1>
-<h1> <%= @user.cashflow %> </h1>
+<h1> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}$" : "#{@user.cashflow}$"  %> </h1>
 <h2>Epargne</h2>
-<h2> <%= @user.epargne %>/<%= @goal %></h2>
+<h2> <%= @user.epargne %>/<%= @goal %>$ </h2>
 <%= link_to "Nouveau flux", new_move_path  %>
 <ol>
+
     <h3>Revenu</h3>
     <% @moves.each do |move| %>
-        <% if (move.amount > 0 && move.version != "epargne")  %>
+        <% if ( ["Revenu régulier", "Revenue ponctuel"].include? move.version)  %>
             <li>
                 <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %> 
                 <%= link_to "edit", edit_move_path(move.id)  %> 
@@ -15,9 +16,10 @@
             </li>
         <% end %>
     <%end%>
+
     <h3>Dépense</h3>
     <% @moves.each do |move| %>
-         <% if (move.amount < 0)  %>
+         <% if ( ["Dépense régulière", "Dépense ponctuelle"].include? move.version)  %>
             <li>
                 <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %> 
                 <%= link_to "edit", edit_move_path(move.id)  %> 
@@ -25,11 +27,12 @@
             </li>
          <% end %>
     <%end%>
+
     <h3>Epargne</h3>
     <% @moves.each do |move| %>
-         <% if (move.version == "epargne")  %>
+         <% if (move.version == "Epargne")  %>
             <li>
-                <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %> 
+                <%= move.date.to_date %> <%= move.name %> <%= move.amount %> 
                 <%= link_to "edit", edit_move_path(move.id)  %> 
                 <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
             </li>

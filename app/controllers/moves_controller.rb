@@ -48,7 +48,6 @@ class MovesController < ApplicationController
   end
 
 
-
 #------------------------------------------------------------------------------------------------------------------------------------#
 private
 
@@ -75,7 +74,7 @@ private
           cf -= move.amount
         when "Dépense ponctuelle"
           cf -= move.amount
-        when "Investissement bouriser"
+        when "Investissement boursier"
           puts move.amount
           cf -= (move.amount * 0.7) 
         when "Epargne"
@@ -109,9 +108,15 @@ private
     @goal = (revenu * 0.2).truncate 
   end
 
-
-
-
+  # Verifie que la date est celle du mois actuelle + Actualise la date des moves régulier
+  def verif_date(move)
+    if move.date.to_date.month != DateTime.now.to_date.month && ['Revenu régulier','Dépense régulière'].include?(move.version)
+      puts "-------------------------------------------#{move}----------------------------------------------------------------"
+      move.date = DateTime.now 
+      move.update
+    end   
+    move.date.to_date.month == DateTime.now.to_date.month
+  end 
 
   def set_user
     @user = current_user
@@ -125,8 +130,5 @@ private
     move.user_id == current_user.id
   end  
 
-  def verif_date(move)
-    move.date.to_date.month == DateTime.now.to_date.month
-  end 
 
 end

@@ -7,7 +7,7 @@ class MovesController < ApplicationController
   #Affiche tout les moves appartenant a l'utilisateur actuellement connecté + invoque les fonction neccésaire sur la home page
   def index
     @moves = []
-    Move.all.each { |move| move.user_id == current_user.id && move.date.to_date.month == DateTime.now.to_date.month ? @moves << move : "" }
+    Move.all.each { |move| verif_user(move) && verif_date(move) ? @moves << move : "" }
     cashflow()
     epargne()
     epargne_goal()
@@ -48,18 +48,24 @@ class MovesController < ApplicationController
   end
 
 
-  private
+
+#------------------------------------------------------------------------------------------------------------------------------------#
+private
+
+
 
   #Verification avec des paramètre fort
   def move_params
     params.require(:move).permit(:name, :version, :amount)
   end
 
+
+
   #Calcule le cashflow de l'utilisateur actuel et l'enregiste en BDD
   def cashflow
     cf = 0
     Move.all.each do |move| 
-      if move.user_id == current_user.id 
+      if verif_user(move) 
         case move.version
         when "Revenu régulier" 
           cf += move.amount
@@ -82,24 +88,30 @@ class MovesController < ApplicationController
     @user.save  
   end
 
+
   #Calcule l'epargne de l'utilisateur actuel et l'enregiste en BDD
   def epargne
     ep = 0
     Move.all.each do |move| 
-      move.version == "Epargne" && move.user_id == current_user.id ? ep += move.amount : ""
+      move.version == "Epargne" && verif_user(move) ? ep += move.amount : ""
     end
     @user.epargne = ep
     @user.save 
   end
 
+
   #Calcule l'objectif d'épargne de l'utilisateur actuel
   def epargne_goal
     revenu = 0
     Move.all.each do |move|
-      move.amount > 0 && move.version != "Epargne" && move.user_id == current_user.id  ? revenu += move.amount : "" 
+      move.amount > 0 && move.version != "Epargne" && verif_user(move)  ? revenu += move.amount : "" 
     end
     @goal = (revenu * 0.2).truncate 
   end
+
+
+
+
 
   def set_user
     @user = current_user
@@ -108,5 +120,13 @@ class MovesController < ApplicationController
   def find_move
     @move = Move.find(params[:id])
   end  
+
+  def verif_user(move)
+    move.user_id == current_user.id
+  end  
+
+  def verif_date(move)
+    move.date.to_date.month == DateTime.now.to_date.month
+  end 
 
 end

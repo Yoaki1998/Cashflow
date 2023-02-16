@@ -9,8 +9,6 @@ class MovesController < ApplicationController
     @moves = []
     Move.all.each { |move| verif_user(move) && verif_date(move) ? @moves << move : "" }
     cashflow()
-    epargne()
-    epargne_goal()
   end
 
   def show
@@ -62,6 +60,7 @@ private
 
   #Calcule le cashflow de l'utilisateur actuel et l'enregiste en BDD
   def cashflow
+    epargne_goal()
     cf = 0
     Move.all.each do |move| 
       if verif_user(move) 
@@ -78,8 +77,8 @@ private
           puts move.amount
           cf -= (move.amount * 0.7) 
         when "Epargne"
-          epargne_goal()
           @user.epargne < @goal ?  cf -= move.amount :  cf += move.amount
+          epargne(move) 
         end
       end
     end 
@@ -89,11 +88,9 @@ private
 
 
   #Calcule l'epargne de l'utilisateur actuel et l'enregiste en BDD
-  def epargne
+  def epargne(move)
     ep = 0
-    Move.all.each do |move| 
-      move.version == "Epargne" && verif_user(move) ? ep += move.amount : ""
-    end
+    move.version == "Epargne" && verif_user(move) ? ep += move.amount : ""
     @user.epargne = ep
     @user.save 
   end
@@ -103,7 +100,7 @@ private
   def epargne_goal
     revenu = 0
     Move.all.each do |move|
-      move.amount > 0 && move.version != "Epargne" && verif_user(move)  ? revenu += move.amount : "" 
+      move.amount > 0 && ["Revenu ponctuel","Revenu régulier"].include?(move.version) && verif_user(move)  ? revenu += move.amount : "" 
     end
     @goal = (revenu * 0.2).truncate 
   end

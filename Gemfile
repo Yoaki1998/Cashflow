@@ -33,6 +33,9 @@ gem 'devise'
 #Simple Form
 gem 'simple_form'
 
+#IEX Developer Platform
+gem 'iex-ruby-client'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

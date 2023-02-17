@@ -1,8 +1,9 @@
 <h2> User id: <%= @user.id %></h2>
 <h1>Cashflow</h1>
-<h1> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}$" : "#{@user.cashflow}$"  %> </h1>
+<h1> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow}€"  %> </h1>
+<h4> <%= @veuro %> EUR/USD  </h4>
 <h2>Epargne</h2>
-<h2> <%= @user.epargne %>/<%= @goal %>$ </h2>
+<h2> <%= @user.epargne %>/<%= @goal %>€ </h2>
 <%= link_to "Nouveau flux", new_move_path  %>
 <ol>
 

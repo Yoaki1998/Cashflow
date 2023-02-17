@@ -9,6 +9,8 @@ class MovesController < ApplicationController
     @moves = []
     Move.all.each { |move| verif_user(move) && verif_date(move) ? @moves << move : "" }
     cashflow()
+    epargne_goal()
+    scrapping_euro()
   end
 
   def show
@@ -46,6 +48,21 @@ class MovesController < ApplicationController
   end
 
 
+  def scrapping_euro
+    require "open-uri"
+    require "nokogiri"
+
+    url = "https://www.google.com/finance/quote/EUR-USD"
+
+    html_file = URI.open(url).read
+    html_doc = Nokogiri::HTML.parse(html_file)
+
+    html_doc.search(".fxKbKc").each do |element|
+      @veuro = element.text.strip
+    end
+  end
+
+
 #------------------------------------------------------------------------------------------------------------------------------------#
 private
 
@@ -60,7 +77,6 @@ private
 
   #Calcule le cashflow de l'utilisateur actuel et l'enregiste en BDD
   def cashflow
-    epargne_goal()
     @user.epargne = 0
     cf = 0
     Move.all.each do |move| 
@@ -88,8 +104,6 @@ private
     @user.cashflow = cf
     @user.save  
   end
-
-
 
   #Calcule l'objectif d'épargne de l'utilisateur actuel
   def epargne_goal

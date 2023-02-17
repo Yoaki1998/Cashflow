@@ -53,7 +53,7 @@ private
 
   #Verification avec des paramètre fort
   def move_params
-    params.require(:move).permit(:name, :version, :amount)
+    params.require(:move).permit(:name, :version, :amount, :taux)
   end
 
 
@@ -61,6 +61,7 @@ private
   #Calcule le cashflow de l'utilisateur actuel et l'enregiste en BDD
   def cashflow
     epargne_goal()
+    @user.epargne = 0
     cf = 0
     Move.all.each do |move| 
       if verif_user(move) 
@@ -74,11 +75,13 @@ private
         when "Dépense ponctuelle"
           cf -= move.amount
         when "Investissement boursier"
-          puts move.amount
-          cf -= (move.amount * 0.7) 
+          yearly_g = move.amount * move.taux / 100
+          monthly_g = yearly_g * 0.7 / 12
+          cf += monthly_g
         when "Epargne"
-          @user.epargne < @goal ?  cf -= move.amount :  cf += move.amount
-          epargne(move) 
+          cf -= move.amount 
+          @user.epargne += move.amount
+          @user.save 
         end
       end
     end 
@@ -86,14 +89,6 @@ private
     @user.save  
   end
 
-
-  #Calcule l'epargne de l'utilisateur actuel et l'enregiste en BDD
-  def epargne(move)
-    ep = 0
-    move.version == "Epargne" && verif_user(move) ? ep += move.amount : ""
-    @user.epargne = ep
-    @user.save 
-  end
 
 
   #Calcule l'objectif d'épargne de l'utilisateur actuel
@@ -107,10 +102,8 @@ private
 
   # Verifie que la date est celle du mois actuelle + Actualise la date des moves régulier
   def verif_date(move)
-    if move.date.to_date.month != DateTime.now.to_date.month && ['Revenu régulier','Dépense régulière'].include?(move.version)
-      puts "-------------------------------------------#{move}----------------------------------------------------------------"
-      move.date = DateTime.now 
-      move.update
+    if move.date.to_date.month != DateTime.now.to_date.month && ['Revenu régulier','Dépense régulière','Investissement boursier'].include?(move.version)
+      move.update( date: DateTime.now )
     end   
     move.date.to_date.month == DateTime.now.to_date.month
   end 

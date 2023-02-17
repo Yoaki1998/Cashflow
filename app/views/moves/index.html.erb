@@ -8,7 +8,7 @@
 
     <h3>Revenu</h3>
     <% @moves.each do |move| %>
-        <% if ( ["Revenu régulier", "Revenu ponctuel"].include? move.version)  %>
+        <% if ( ["Revenu régulier", "Revenu ponctuel", "Investissement boursier"].include? move.version)  %>
             <li>
                 <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %> 
                 <%= link_to "edit", edit_move_path(move.id)  %> 

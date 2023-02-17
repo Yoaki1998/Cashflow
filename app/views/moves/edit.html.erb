@@ -7,5 +7,7 @@
   <%= f.select :version, ['Revenu régulier', 'Revenu ponctuel','Dépense régulière','Dépense ponctuelle','Investissement boursier','Epargne']%>
   <%= f.label :amount %>
   <%= f.number_field :amount %>
+  <%= f.label :taux %>
+  <%= f.number_field :taux %>
   <%= f.submit %>
 <% end %>

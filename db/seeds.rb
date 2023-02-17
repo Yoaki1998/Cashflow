@@ -27,6 +27,7 @@ user.save!
 
 Move.create(name:"Salaire dev", amount:3200, version:"Revenu régulier", user_id:1, date: DateTime.new(2022,1,30,22,35,0))
 Move.create(name:"Sizebusiness", amount:1200, version:"Revenu régulier", user_id:1, date: DateTime.now)
+Move.create(name:"S&P500", amount:1200, version:"Investissement boursier", taux:8, user_id:1, date: DateTime.now)
 Move.create(name:"Course", amount:150, version:"Dépense régulière", user_id:1, date: DateTime.now)
 Move.create(name:"Essence", amount:320, version:"Dépense régulière", user_id:1, date: DateTime.now)
 Move.create(name:"Réparation", amount:300, version:"Dépense ponctuelle", user_id:1, date: DateTime.now)

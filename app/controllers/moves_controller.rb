@@ -11,6 +11,7 @@ class MovesController < ApplicationController
     cashflow()
     epargne_goal()
     scrapping_euro()
+    dataset(@moves)
   end
 
   def show
@@ -59,6 +60,13 @@ class MovesController < ApplicationController
 
     html_doc.search(".fxKbKc").each do |element|
       @veuro = element.text.strip
+    end
+  end
+
+  def dataset(moves)
+    @data = []
+    moves.each do |move|
+      @data << [move.created_at.month,move.amount]
     end
   end
 

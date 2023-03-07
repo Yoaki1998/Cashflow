@@ -31,7 +31,9 @@
     </div>
     
     <div class="inferieur">
-        <div class="graph"></div>
+        <div class="graph">
+           <%= line_chart @data %>
+        </div>
         <div class="transaction">
             <%= link_to "Nouveau flux", new_move_path  %>
             <ol>

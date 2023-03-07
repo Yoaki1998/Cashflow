@@ -82,6 +82,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chartkick (5.0.1)
     concurrent-ruby (1.2.0)
     crass (1.0.6)
     date (3.3.3)
@@ -123,6 +124,8 @@ GEM
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    groupdate (6.2.0)
+      activesupport (>= 5.2)
     hashie (5.0.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
@@ -272,8 +275,10 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  chartkick
   debug
   devise
+  groupdate
   iex-ruby-client
   importmap-rails
   jbuilder

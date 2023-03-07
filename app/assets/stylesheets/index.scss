@@ -1,6 +1,50 @@
 @import url("components/card.scss");
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
 
+#someselector {
+    all: initial;
+    * {
+      all: unset;
+    }
+  }
+
 body {
     font-family: Poppins;
+    display: flex;
 }
+
+.vsc-initialized {
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 20vw;
+    height: 100vh;
+    background-color: #262631;
+}
+
+.inferieur {
+    position: fixed;
+    top: 50vh;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.transaction {
+    width: 48vw;
+    height: 50vh;
+    background-color: aqua;
+}
+
+.graph {
+    width: 32vw;
+    height: 50vh;
+    background-color: red;
+}
+

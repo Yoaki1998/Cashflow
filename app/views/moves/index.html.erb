@@ -1,49 +1,73 @@
 <%= stylesheet_link_tag ("index") %>
 
-<h2> User id: <%= @user.id %></h2>
-<div class="card" >
-    <div>
-        <div class="title">Cashflow</div>
-        <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
-        <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
-    </div>
-</div>
+<div class="sidebar">
+    <h2> User id: <%= @user.id %></h2>
     <h4> <%= @veuro %> EUR/USD  </h4>
+    <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item" %>
+</div>
+<div class="container">
+    <div class="cardcontainer">
+        <div class="card" >
+            <div>
+                <div class="title">Cashflow</div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
+                <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
+            </div>
+        </div>
+        <div class="card" >
+            <div>
+                <div class="title">Cashflow</div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
+                <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
+            </div>
+        </div>
+        <div class="card" >
+            <div>
+                <div class="title">Cashflow</div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
+                <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="inferieur">
+        <div class="graph"></div>
+        <div class="transaction">
+            <%= link_to "Nouveau flux", new_move_path  %>
+            <ol>
+                <h3>Revenu</h3>
+                <% @moves.each do |move| %>
+                    <% if ( ["Revenu régulier", "Revenu ponctuel", "Investissement boursier"].include? move.version)  %>
+                        <li> 
+                            <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %>
+                            <%= link_to "edit", edit_move_path(move.id)  %> 
+                            <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
+                        </li>
+                    <% end %>
+                <%end%>
 
+                <h3>Dépense</h3>
+                <% @moves.each do |move| %>
+                    <% if ( ["Dépense régulière", "Dépense ponctuelle"].include? move.version)  %>
+                        <li>
+                            <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %> 
+                            <%= link_to "edit", edit_move_path(move.id)  %> 
+                            <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
+                        </li>
+                    <% end %>
+                <%end%>
 
-<%= link_to "Nouveau flux", new_move_path  %>
-<ol>
-
-    <h3>Revenu</h3>
-    <% @moves.each do |move| %>
-        <% if ( ["Revenu régulier", "Revenu ponctuel", "Investissement boursier"].include? move.version)  %>
-            <li>
-                <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %> 
-                <%= link_to "edit", edit_move_path(move.id)  %> 
-                <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
-            </li>
-        <% end %>
-    <%end%>
-
-    <h3>Dépense</h3>
-    <% @moves.each do |move| %>
-         <% if ( ["Dépense régulière", "Dépense ponctuelle"].include? move.version)  %>
-            <li>
-                <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %> 
-                <%= link_to "edit", edit_move_path(move.id)  %> 
-                <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
-            </li>
-         <% end %>
-    <%end%>
-
-    <h3>Epargne</h3>
-    <% @moves.each do |move| %>
-         <% if (move.version == "Epargne")  %>
-            <li>
-                <%= move.date.to_date %> <%= move.name %> <%= move.amount %> 
-                <%= link_to "edit", edit_move_path(move.id)  %> 
-                <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
-            </li>
-         <% end %>
-    <%end%>
-</ol>
+                <h3>Epargne</h3>
+                <% @moves.each do |move| %>
+                    <% if (move.version == "Epargne")  %>
+                        <li>
+                            <%= move.date.to_date %> <%= move.name %> <%= move.amount %> 
+                            <%= link_to "edit", edit_move_path(move.id)  %> 
+                            <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
+                        </li>
+                    <% end %>
+                <%end%>
+            </ol>
+        </div>
+    </div> 
+</div>

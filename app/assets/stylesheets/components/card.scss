@@ -1,10 +1,22 @@
+.cardcontainer {
+    width: 80vw;
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 25vh;
+    background-color: bisque;
+}
+
+
 .card {
-    height: 214px;
-    width: 465px;;
+    height: 20vh;
+    width: 22vw;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
-    border-radius: 5%;
+    border-radius: 20px;
     padding-left: 40px;
 
 }

@@ -1,9 +1,16 @@
+<%= stylesheet_link_tag ("index") %>
+
 <h2> User id: <%= @user.id %></h2>
-<h1>Cashflow</h1>
-<h1> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow}€"  %> </h1>
-<h4> <%= @veuro %> EUR/USD  </h4>
-<h2>Epargne</h2>
-<h2> <%= @user.epargne %>/<%= @goal %>€ </h2>
+<div class="card" >
+    <div>
+        <div class="title">Cashflow</div>
+        <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
+        <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
+    </div>
+</div>
+    <h4> <%= @veuro %> EUR/USD  </h4>
+
+
 <%= link_to "Nouveau flux", new_move_path  %>
 <ol>
 

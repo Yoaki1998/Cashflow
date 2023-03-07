@@ -47,7 +47,7 @@ class MovesController < ApplicationController
     redirect_to move_path(@move),status: :see_other
   end
 
-
+  #Recupère le taux de change de l'euro sur Google Finance
   def scrapping_euro
     require "open-uri"
     require "nokogiri"
@@ -61,7 +61,6 @@ class MovesController < ApplicationController
       @veuro = element.text.strip
     end
   end
-
 
 #------------------------------------------------------------------------------------------------------------------------------------#
 private
@@ -109,9 +108,12 @@ private
   def epargne_goal
     revenu = 0
     Move.all.each do |move|
-      move.amount > 0 && ["Revenu ponctuel","Revenu régulier"].include?(move.version) && verif_user(move)  ? revenu += move.amount : "" 
+      ["Revenu ponctuel","Revenu régulier"].include?(move.version) && verif_user(move)  ? revenu += move.amount : "" 
+      yearly_g = move.amount * move.taux / 100
+      monthly_g = yearly_g * 0.7 / 12
+      "Investissement boursier" == move.version ? revenu += monthly_g : "" 
     end
-    @goal = (revenu * 0.2).truncate 
+    @goal = (revenu * 6).truncate 
   end
 
   # Verifie que la date est celle du mois actuelle + Actualise la date des moves régulier

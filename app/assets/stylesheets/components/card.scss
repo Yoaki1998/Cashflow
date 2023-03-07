@@ -1,0 +1,28 @@
+.card {
+    height: 214px;
+    width: 465px;;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    border-radius: 5%;
+    padding-left: 40px;
+
+}
+
+.card .title {
+    font-size: 15px;
+    font-weight: 300;
+    color: #808080;
+}
+
+.card .value {
+    font-size: 40px;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card .sub {
+    font-size: 15px;
+    font-weight: 400;
+}

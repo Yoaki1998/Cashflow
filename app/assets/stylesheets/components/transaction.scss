@@ -1,0 +1,10 @@
+.transaction {
+    width: 40vw;
+    height: 50vh;
+    overflow-y: auto;
+    max-height: 50vh;
+}
+
+.transaction::-webkit-scrollbar {
+    display: none;
+}

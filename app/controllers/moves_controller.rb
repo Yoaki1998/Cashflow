@@ -125,7 +125,8 @@ private
     end   
     move.date.to_date.month == DateTime.now.to_date.month
   end 
-
+  
+  # Calcule le revenue du client et met a jours le donné du graphique et les sauvegarde eb bdd
   def graphdata
     rev = 0 
     @user.moves.each do |move| 

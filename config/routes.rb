@@ -4,5 +4,4 @@ Rails.application.routes.draw do
   resources :moves
   root to: "devise/sessions#new"
   # Defines the root path route ("/")
-  # root "articles#index"
 end

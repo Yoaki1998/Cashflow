@@ -62,14 +62,7 @@ class MovesController < ApplicationController
     end
   end
 
-  def graphdata
-    rev = 0 
-    @user.moves.each do |move| 
-      move.date.to_date.month == DateTime.now.to_date.month && ['Revenu régulier','Revenu ponctuel'].include?(move.version) ? rev += move.amount : ""
-    end
-    @user.gdata == [] ? @user.gdata << [DateTime.now.to_date.strftime("%B"),rev] : ""
-    @user.gdata.last[0] ==  DateTime.now.to_date.strftime("%B") ? "" :  @user.gdata << [DateTime.now.to_date.strftime("%B"),rev] && @user.save
-  end
+
 
 #------------------------------------------------------------------------------------------------------------------------------------#
 private
@@ -132,6 +125,17 @@ private
     end   
     move.date.to_date.month == DateTime.now.to_date.month
   end 
+
+  def graphdata
+    rev = 0 
+    @user.moves.each do |move| 
+      move.date.to_date.month == DateTime.now.to_date.month && ['Revenu régulier','Revenu ponctuel'].include?(move.version) ? rev += move.amount : ""
+    end
+    @user.gdata == [] ? @user.gdata << [DateTime.now.to_date.strftime("%B"),rev] : "" 
+    @user.gdata.last[1] != rev && @user.gdata.last[0] ==  DateTime.now.to_date.strftime("%B") ? @user.gdata.last[1] = rev : ""
+    @user.gdata.last[0] !=  DateTime.now.to_date.strftime("%B") ? @user.gdata << [DateTime.now.to_date.strftime("%B"),rev] :  ""
+    @user.save
+  end
 
   def set_user
     @user = current_user

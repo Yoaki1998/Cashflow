@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
     t.string "name"
     t.string "version"
     t.integer "amount"
-    t.datetime "date", default: "2023-03-08 01:02:41"
+    t.datetime "date", default: "2023-03-08 12:46:50"
     t.integer "taux", default: 0
     t.integer "user_id", null: false
     t.datetime "created_at", null: false

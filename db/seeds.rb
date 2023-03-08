@@ -13,12 +13,28 @@ puts "Creating moves..."
 
 user = User.new
 user.email = 'yoakiniscoise@gmail.com  '
+user.gdata = [
+    ["August",3652],
+    ["November",3758],
+    ["October",3205],
+    ["December",3922],
+    ["January",4012],
+    ["February",3666]
+]
 user.password = 'b1a3c41e'
 user.password_confirmation = 'b1a3c41e'
 user.save!
 
 user = User.new
 user.email = 'yoyo@gmail.com  '
+user.gdata = [
+    ["August",3652],
+    ["November",3758],
+    ["October",3205],
+    ["December",3922],
+    ["January",4012],
+    ["February",3666]
+]
 user.password = 'ouioui'
 user.password_confirmation = 'ouioui'
 user.save!

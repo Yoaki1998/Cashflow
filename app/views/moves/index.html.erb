@@ -19,19 +19,19 @@
             <div>
                 <div class="title">Cashflow</div>
                 <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
-                <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
+                <div class="sub"> Variation par : <%= @var > 0 ? "+ #{@var} %" : "#{@var} %"  %> </div>
             </div>
         </div>
         <div class="card" >
             <div>
-                <div class="title">Cashflow</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
-                <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
+                <div class="title">Revenu Mensuel</div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev}€" : "#{@user.cashflow.to_f} €"  %> </div>
+                <div class="sub"> Top : <%= @rank %>  % ( France ) </div>
             </div>
         </div>
         <div class="card" >
             <div>
-                <div class="title">Cashflow</div>
+                <div class="title">Liquidité</div>
                 <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
                 <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
             </div>
@@ -41,7 +41,7 @@
     <div class="inferieur">
         <div class="graphcont">
             <div class="graph">
-                <div>Graphics</div>
+                <div>Income Tracking</div>
                 <%= line_chart @user.gdata.last(12) %>
             </div>
         </div>

@@ -12,6 +12,8 @@ class MovesController < ApplicationController
     epargne_goal()
     scrapping_euro()
     graphdata()
+    variation()
+    flexp()
   end
 
   def show
@@ -125,16 +127,37 @@ private
     end   
     move.date.to_date.month == DateTime.now.to_date.month
   end 
-  
-  # Calcule le revenue du client et met a jours le donné du graphique et les sauvegarde eb bdd
-  def graphdata
-    rev = 0 
+
+  # Calcule le revenue et les depenses du client 
+  def revlose
+    @rev = 0 
+    @lose = 0
     @user.moves.each do |move| 
-      move.date.to_date.month == DateTime.now.to_date.month && ['Revenu régulier','Revenu ponctuel'].include?(move.version) ? rev += move.amount : ""
+      move.date.to_date.month == DateTime.now.to_date.month && ['Revenu régulier','Revenu ponctuel'].include?(move.version) ? @rev += move.amount : ""
+      move.date.to_date.month == DateTime.now.to_date.month && ['Dépense régulière','Dépense ponctuel'].include?(move.version) ? @lose += move.amount : ""
     end
-    @user.gdata == [] ? @user.gdata << [DateTime.now.to_date.strftime("%B"),rev] : "" 
-    @user.gdata.last[1] != rev && @user.gdata.last[0] ==  DateTime.now.to_date.strftime("%B") ? @user.gdata.last[1] = rev : ""
-    @user.gdata.last[0] !=  DateTime.now.to_date.strftime("%B") ? @user.gdata << [DateTime.now.to_date.strftime("%B"),rev] :  ""
+  end  
+
+  def flexp
+    @rank = 100
+    [1366,1520,1664,1825,2012,2243,2558,3041,4010].each do |tier|
+      @rev >= tier ? @rank -= 10 : ""
+    end  
+  end
+
+  #Calcule la variation de revenue par rapport au mois précédent
+  def variation 
+    lastm = @user.gdata[-2][1]
+    actualm = @user.gdata.last[1]
+    @var = (((actualm.to_f / lastm.to_f)-1) * 100).round(1)
+  end 
+  
+  # Met a jours le donné du graphique et les sauvegarde eb bdd
+  def graphdata
+    revlose()
+    @user.gdata == [] ? @user.gdata << [DateTime.now.to_date.strftime("%B"),@rev] : "" 
+    @user.gdata.last[1] != @rev && @user.gdata.last[0] ==  DateTime.now.to_date.strftime("%B") ? @user.gdata.last[1] = @rev : ""
+    @user.gdata.last[0] !=  DateTime.now.to_date.strftime("%B") ? @user.gdata << [DateTime.now.to_date.strftime("%B"),@rev] :  ""
     @user.save
   end
 

@@ -19,7 +19,7 @@
             <div>
                 <div class="title">Cashflow</div>
                 <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
-                <div class="sub"> Variation par : <%= @var > 0 ? "+ #{@var} %" : "#{@var} %"  %> </div>
+                <div class="sub"> Variation(mois) : <%= @var > 0 ? "+ #{@var} %" : "#{@var} %"  %> </div>
             </div>
         </div>
         <div class="card" >
@@ -32,8 +32,9 @@
         <div class="card" >
             <div>
                 <div class="title">Liquidité</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@snake}€" : "#{@user.cashflow.to_f} €"  %> </div>
                 <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
+                <div class="sub"> T.change :  <%= @veuro %> EUR/USD  </div>
             </div>
         </div>
     </div>
@@ -41,8 +42,8 @@
     <div class="inferieur">
         <div class="graphcont">
             <div class="graph">
-                <div>Income Tracking</div>
-                <%= line_chart @user.gdata.last(12) %>
+                <div>Cashflow Tracking</div>
+                <%= area_chart @user.gdata.last(12) %>
             </div>
         </div>
         <div class="transaction">

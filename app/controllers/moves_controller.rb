@@ -14,6 +14,7 @@ class MovesController < ApplicationController
     graphdata()
     variation()
     flexp()
+    liquid()
   end
 
   def show
@@ -139,6 +140,7 @@ private
   end  
 
   def flexp
+    revlose()
     @rank = 100
     [1366,1520,1664,1825,2012,2243,2558,3041,4010].each do |tier|
       @rev >= tier ? @rank -= 10 : ""
@@ -154,11 +156,19 @@ private
   
   # Met a jours le donné du graphique et les sauvegarde eb bdd
   def graphdata
-    revlose()
-    @user.gdata == [] ? @user.gdata << [DateTime.now.to_date.strftime("%B"),@rev] : "" 
-    @user.gdata.last[1] != @rev && @user.gdata.last[0] ==  DateTime.now.to_date.strftime("%B") ? @user.gdata.last[1] = @rev : ""
-    @user.gdata.last[0] !=  DateTime.now.to_date.strftime("%B") ? @user.gdata << [DateTime.now.to_date.strftime("%B"),@rev] :  ""
+    cashflow = @user.cashflow
+    @user.gdata == [] ? @user.gdata << [DateTime.now.to_date.strftime("%B"),cashflow] : "" 
+    @user.gdata.last[1] != cashflow && @user.gdata.last[0] ==  DateTime.now.to_date.strftime("%B") ? @user.gdata.last[1] = cashflow : ""
+    @user.gdata.last[0] !=  DateTime.now.to_date.strftime("%B") ? @user.gdata << [DateTime.now.to_date.strftime("%B"),cashflow] :  ""
     @user.save
+  end
+
+  def liquid 
+    @snake = 0
+    @user.gdata.each do |mois|
+      @snake += mois[1] 
+    end
+    puts @snake  
   end
 
   def set_user

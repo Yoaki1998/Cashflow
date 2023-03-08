@@ -33,6 +33,7 @@ gem 'devise'
 #Chart gem
 gem "chartkick"
 gem "groupdate"
+gem 'whenever', require: false
 
 #Simple Form
 gem 'simple_form'

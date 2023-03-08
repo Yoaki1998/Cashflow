@@ -1,6 +1,6 @@
 class MovesController < ApplicationController
   #Crée une instance d'utilisateur
-  before_action :set_user, only: [:create, :index]
+  before_action :set_user, only: [:create, :index, :graphdata]
   #Trouve un move a partir d'un ID
   before_action :find_move, only: [:show, :edit, :update, :destroy]
 
@@ -11,7 +11,7 @@ class MovesController < ApplicationController
     cashflow()
     epargne_goal()
     scrapping_euro()
-    dataset(@moves)
+    graphdata()
   end
 
   def show
@@ -26,7 +26,6 @@ class MovesController < ApplicationController
     @move = Move.new(move_params)
     @move.date = DateTime.now
     @move.user_id = @user.id
-    puts @move
     @move.save
     redirect_to moves_path
   end
@@ -63,11 +62,13 @@ class MovesController < ApplicationController
     end
   end
 
-  def dataset(moves)
-    @data = []
-    moves.each do |move|
-      @data << [move.created_at.month,move.amount]
+  def graphdata
+    rev = 0 
+    @user.moves.each do |move| 
+      move.date.to_date.month == DateTime.now.to_date.month && ['Revenu régulier','Revenu ponctuel'].include?(move.version) ? rev += move.amount : ""
     end
+    @user.gdata == [] ? @user.gdata << [DateTime.now.to_date.strftime("%B"),rev] : ""
+    @user.gdata.last[0] ==  DateTime.now.to_date.strftime("%B") ? "" :  @user.gdata << [DateTime.now.to_date.strftime("%B"),rev] && @user.save
   end
 
 #------------------------------------------------------------------------------------------------------------------------------------#
@@ -103,12 +104,12 @@ private
           cf += monthly_g
         when "Epargne"
           cf -= move.amount 
-          @user.epargne += move.amount
-          @user.save 
+          @user.epargne += move.amount 
         end
       end
     end 
     @user.cashflow = cf
+    @user.gdata == "" ? @user.gdata = [] : ""
     @user.save  
   end
 

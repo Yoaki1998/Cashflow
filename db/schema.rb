@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
     t.string "name"
     t.string "version"
     t.integer "amount"
-    t.datetime "date", default: "2023-02-16 14:54:21"
+    t.datetime "date", default: "2023-03-08 01:02:41"
     t.integer "taux", default: 0
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "gdata", default: ""
     t.integer "cashflow", default: 0
     t.integer "epargne", default: 0
     t.datetime "created_at", null: false

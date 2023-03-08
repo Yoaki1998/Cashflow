@@ -29,6 +29,51 @@ body {
     width: 20vw;
     height: 100vh;
     background-color: #262631;
+
+    .logo {
+        font-style: normal;
+        font-weight: 800;
+        font-size: 4vh;
+        line-height: 36px;
+        letter-spacing: 0.1em;
+        color: #FFFFFF;
+        text-align: center;
+        height: 20vh;
+
+        div {
+            padding-top: 10vh;
+        }
+
+
+    }
+
+    .option {
+        text-align: center;
+        height: auto;
+        min-height: 69vh;
+        font-size: 1.5vh;
+    }
+
+    .user {
+        text-align: center;
+        border-top: solid 1px gray;
+        width: 95%;
+        margin-inline: 2.5%;
+        height: 5vh;
+        padding-top: 2vh;
+
+        font-weight: 400;
+        font-size: 2vh;
+        line-height: 33px;
+        letter-spacing: 0.09em;
+        color: #FFFFFF;
+
+        .logout {
+            font-weight: 700;
+            font-size: 1.9vh;
+            color: #ac0505;
+        }
+    }
 }
 
 .supérieur {
@@ -100,6 +145,7 @@ body {
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
     border-radius: 15px;
     padding: 20px;
+    min-height: 355px;
 }
 
 .addbutton {

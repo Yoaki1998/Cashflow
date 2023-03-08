@@ -1,10 +1,20 @@
 <%= stylesheet_link_tag ("index") %>
 
 <div class="sidebar">
-    <h2> User id: <%= @user.id %></h2>
-    <h2> User gdata: <%= @user.gdata %></h2>
-    <h4> <%= @veuro %> EUR/USD  </h4>
-    <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item" %>
+    <div class="logo">
+        <div>YK.NSC</div>
+    </div>
+    <div class="option">
+        <h2> User id: <%= @user.id %></h2>
+        <h2> User gdata: <%= @user.gdata %></h2>
+        <h4> <%= @veuro %> EUR/USD  </h4>
+    </div>
+    <div class="user">
+        Yoaki Niscoise
+        <div>
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
+        </div>
+    </div>
 </div>
 <div class="container">
     <div class=supérieur>
@@ -18,22 +28,22 @@
         <div class="card" >
             <div>
                 <div class="title">Cashflow</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow.to_f} €"  %> </div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow} €"  %> </div>
                 <div class="sub"> Variation(mois) : <%= @var > 0 ? "+ #{@var} %" : "#{@var} %"  %> </div>
             </div>
         </div>
         <div class="card" >
             <div>
                 <div class="title">Revenu Mensuel</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev}€" : "#{@user.cashflow.to_f} €"  %> </div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev}€" : "#{@rev} €"  %> </div>
                 <div class="sub"> Top : <%= @rank %>  % ( France ) </div>
             </div>
         </div>
         <div class="card" >
             <div>
                 <div class="title">Liquidité</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@snake}€" : "#{@user.cashflow.to_f} €"  %> </div>
-                <div class="sub"> Epargne : <%= @user.epargne %>/<%= @goal %>€ </div>
+                <div class="value"> <%= @snake > 0 ? "+ #{@snake}€" : "#{@snake} €"  %> </div>
+                <div class="sub"> Epargne(6 mois) : <%= @user.epargne %>/<%= @goal %>€ </div>
                 <div class="sub"> T.change :  <%= @veuro %> EUR/USD  </div>
             </div>
         </div>

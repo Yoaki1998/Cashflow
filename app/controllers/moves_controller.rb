@@ -39,6 +39,7 @@ class MovesController < ApplicationController
   #Update un move ( mouvement d'argent ) + redirige sur la home
   def update
     @move.update(move_params)
+    @move.taux == "" ? @move.taux = 0 : ""
     @move.updated_at = DateTime.now
     redirect_to moves_path
     
@@ -164,11 +165,13 @@ private
   end
 
   def liquid 
-    @snake = 0
+    @snake = -1
     @user.gdata.each do |mois|
-      @snake += mois[1] 
+      puts mois[1]
+      @snake = @snake + (mois[1]) 
+      puts @snake
     end
-    puts @snake  
+    
   end
 
   def set_user

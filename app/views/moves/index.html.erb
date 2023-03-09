@@ -69,40 +69,28 @@
         </div>
         <div class="transaction">
                 <%= link_to "Ajouter une transaction", new_move_path, class: "addbutton" %>
-            <ol>
-                <h3>Revenu</h3>
-                <% @moves.each do |move| %>
-                    <% if ( ["Revenu régulier", "Revenu ponctuel", "Investissement boursier"].include? move.version)  %>
-                        <li> 
-                            <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %>
-                            <%= link_to "edit", edit_move_path(move.id)  %> 
-                            <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
-                        </li>
-                    <% end %>
-                <%end%>
-
-                <h3>Dépense</h3>
-                <% @moves.each do |move| %>
-                    <% if ( ["Dépense régulière", "Dépense ponctuelle"].include? move.version)  %>
-                        <li>
-                            <%= move.date.to_date %> <%= move.name %> <%= move.version %> <%= move.amount %> 
-                            <%= link_to "edit", edit_move_path(move.id)  %> 
-                            <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
-                        </li>
-                    <% end %>
-                <%end%>
-
-                <h3>Epargne</h3>
-                <% @moves.each do |move| %>
-                    <% if (move.version == "Epargne")  %>
-                        <li>
-                            <%= move.date.to_date %> <%= move.name %> <%= move.amount %> 
-                            <%= link_to "edit", edit_move_path(move.id)  %> 
-                            <%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>  
-                        </li>
-                    <% end %>
-                <%end%>
-            </ol>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Montant</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @user.moves.each do |move| %>
+                        <tr>
+                            <td><%= move.date.to_date %></td> 
+                            <td><%= move.name %></td> 
+                            <td><%= move.version %></td> 
+                            <td><%= move.amount %></td> 
+                            <td><%= link_to "edit", edit_move_path(move.id)  %></td> 
+                            <td><%= link_to "delete", move_path(move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %></td> 
+                        </tr>
+                    <%end%>
+                </tbody>
+            </table>    
         </div>
     </div> 
 </div>

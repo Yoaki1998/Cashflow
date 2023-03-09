@@ -7,7 +7,7 @@
     display: none;
     justify-content: space-between;
     z-index: 100;
-    align-items: center;
+    align-items: end;
 
     .logo2 {
         font-style: normal;
@@ -20,10 +20,18 @@
         margin-left: 2vw;
     }
 
+    .option2 {
+        display: flex;
+        justify-content: space-around;
+        flex-grow: 1;
+        font-size: 2vw;
+        line-height: 36px;
+    }
+
     .user2 {
         font-weight: 400;
         font-size: 1.5vh;
-        line-height: 33px;
+        line-height: 36px;
         letter-spacing: 0.09em;
         color: rgb(182, 182, 182);
         margin-right: 2vw;

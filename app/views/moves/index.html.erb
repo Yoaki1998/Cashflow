@@ -1,13 +1,14 @@
 <%= stylesheet_link_tag ("index") %>
+
 <div class="sidecont">
     <div class="sidebar">
         <div class="logo">
-            <div>YK.NSC</div>
+            <div>YK</div>
         </div>
         <div class="option">
-            <h2> User id: <%= @user.id %></h2>
-            <h2> User gdata: <%= @user.gdata %></h2>
-            <h4> <%= @veuro %> EUR/USD  </h4>
+            <div class="tab">DASHBOARD</div>
+            <div class="tab">PROJET</div>
+            <div class="tab">ABOUT</div>
         </div>
         <div class="user">
             Yoaki Niscoise
@@ -16,14 +17,17 @@
             </div>
         </div>
     </div>
-    </div>
 </div>
 <div class="container">
     <div class=navbar>
             <div class="logo2">
             <div>YK.NSC</div>
         </div>
-
+        <div class="option2">
+            <div class="tab">Dashboard</div>
+            <div class="tab">Projet</div>
+            <div class="tab">About</div>
+        </div>       
         <div class="user2">
             <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
             <div> Yoaki Niscoise </div>
@@ -40,21 +44,21 @@
         <div class="card" >
             <div>
                 <div class="title">Cashflow</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow}€" : "#{@user.cashflow} €"  %> </div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow.to_f} €" : "#{@user.cashflow.to_f} €"  %> </div>
                 <div class="sub"> Variation(mois) : <%= @var > 0 ? "+ #{@var} %" : "#{@var} %"  %> </div>
             </div>
         </div>
         <div class="card" >
             <div>
                 <div class="title">Revenu Mensuel</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev}€" : "#{@rev} €"  %> </div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev.to_f} €" : "#{@rev.to_f} €"  %> </div>
                 <div class="sub"> Top : <%= @rank %>  % ( France ) </div>
             </div>
         </div>
         <div class="card" >
             <div>
                 <div class="title">Liquidité</div>
-                <div class="value"> <%= @snake > 0 ? "+ #{@snake}€" : "#{@snake} €"  %> </div>
+                <div class="value"> <%= @snake > 0 ? "+ #{@snake.to_f} €" : "#{@snake.to_f} €"  %> </div>
                 <div class="sub"> Epargne(6 mois) : <%= @user.epargne %>/<%= @goal %>€ </div>
             </div>
         </div>
@@ -82,7 +86,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% @user.moves.each do |move| %>
+                    <% @user.moves.sort.each do |move| %>
                         <tr>
                             <td><%= move.name %></td> 
                             <td><%= move.version %></td> 

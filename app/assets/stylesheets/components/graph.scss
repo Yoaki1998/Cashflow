@@ -2,8 +2,8 @@
     width: 40vw;
     height: 47vh;
     display: flex;
-    align-items: center;
     justify-content: space-around;
+    padding-top: 22px;
 }
 
 .graph {
@@ -11,12 +11,14 @@
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
     border-radius: 15px;
     padding: 20px;
+    margin-bottom: 24px;
 
     .graphtitle {
-        margin-bottom: 3vh;
+        margin-bottom: 5vh;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-weight: bold;
     }
 
     .addbutton {

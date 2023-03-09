@@ -5,19 +5,19 @@
     max-height: 50vh;
     display: flex;
     justify-content: space-around;
-    align-items: center;
 
     .transtable {
         border-collapse: collapse;
         margin: 25px 0;
-        min-width: 39vw;
         box-shadow: 0 0 15px rgba(0,0,0,0.1);
         border-radius: 7px 7px 0px 0px ;
         overflow: hidden;
+        width: 38vw;
 
 
         th,td {
             padding: 9px;
+            font-size: 1.1vw;
         }
 
         thead {
@@ -75,6 +75,14 @@
         width: 90%;
         margin-left: 5%;
 
+        .transtable {
+            width: 68vw;
+
+            th,td {
+                font-size: 1.6vw;
+            }
+        }
+
         li {
             font-size: 2vw;
         }
@@ -90,6 +98,15 @@
 
     .transaction {
 
+        .transtable {
+            width: 85vw;
+            min-width: 1vh;
+
+            th,td {
+                font-size: 2vw;
+            }
+        }
+
         li {
             font-size: 2.7vw;
         }
@@ -99,6 +116,17 @@
 @media only screen and (max-width: 600px) {
     
     .transaction {
+
+        .transtable {
+            tr {
+
+                font-size: 1.2vh;
+                
+                td {
+                    font-size: 1.2vh;
+                }
+            }
+        }
         
         li {
             font-size: 2.6vw;

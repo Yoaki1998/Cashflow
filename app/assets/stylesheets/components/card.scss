@@ -16,28 +16,30 @@
     display: flex;
     align-items: center;
     border-radius: 20px;
-    padding-left: 40px;
+    padding-left: 3vw;
     background-color: white;
     min-height: 134px;
+
+    .title {
+        font-size: 15px;
+        font-weight: 300;
+        color: #808080;
+    }
+    
+    .value {
+        font-size: 40px;
+        font-weight: 500;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .sub {
+        font-size: 15px;
+        font-weight: 400;
+    }
 }
 
-.card .title {
-    font-size: 15px;
-    font-weight: 300;
-    color: #808080;
-}
 
-.card .value {
-    font-size: 40px;
-    font-weight: 500;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.card .sub {
-    font-size: 15px;
-    font-weight: 400;
-}
 
 /* Large devices (laptops/desktops, 992px and down) */
 @media only screen and (max-width: 992px) {
@@ -47,7 +49,7 @@
 
     .card {
         height: 15vh;
-        width: 19vw;
+        width: 21vw;
         
         .title {
             font-size: 1.5vw;
@@ -61,14 +63,53 @@
             font-size: 1.2vw;
         }
     }
-
-    
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
+    .cardcontainer {
+        width: 100vw;
+        top: 20vh;
+    }
+
     .card {
-        display: none;
+        min-height: 100px;
+        height: 13vh;
+        width: 27vw;
+
+        .title {
+            font-size: 2vw;
+        }
+        
+        .value {
+            font-size: 3vw;
+        }
+        
+        .sub {
+            font-size: 1.5vw;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 600px) {
+
+    .card {
+        min-height: 100px;
+        height: 12vh;
+        width: 27vw;
+
+        .title {
+            font-size: 2.5vw;
+        }
+        
+        .value {
+            font-size: 3.5vw;
+        }
+        
+        .sub {
+            font-size: 1.7vw;
+        }
     }
     
 }

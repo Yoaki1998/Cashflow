@@ -1,0 +1,48 @@
+.navbar {
+    position: relative;
+    top: 0px;
+    color: rgb(182, 182, 182);
+    height: 6vh;
+    width: 100vw;
+    display: none;
+    justify-content: space-between;
+    z-index: 100;
+    align-items: center;
+
+    .logo2 {
+        font-style: normal;
+        font-weight: 800;
+        font-size: 1.5vh;
+        line-height: 36px;
+        letter-spacing: 0.1em;
+        color: rgb(182, 182, 182);
+        text-align: center;
+        margin-left: 2vw;
+    }
+
+    .user2 {
+        text-align: center;
+        font-weight: 400;
+        font-size: 1.5vh;
+        line-height: 33px;
+        letter-spacing: 0.09em;
+        color: rgb(182, 182, 182);
+        margin-right: 2vw;
+        height: 4vh;
+        padding-top: 2vh;
+
+        .logout {
+            font-weight: 700;
+            font-size: 1.2vh;
+            color: #ac0505;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        display: flex;
+    }
+    
+}

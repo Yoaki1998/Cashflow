@@ -1,6 +1,6 @@
 .graphcont {
     width: 40vw;
-    height: 50vh;
+    height: 47vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -8,11 +8,9 @@
 
 .graph {
     width: 80%;
-    height: 70%;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
     border-radius: 15px;
     padding: 20px;
-    min-height: 355px;
 
     div{
         margin-bottom: 3vh;
@@ -20,12 +18,11 @@
 }
 
 
-
-
 @media only screen and (max-width: 992px) {
     .graphcont {
+        align-items: end;
+        height: 44vh;
         width: 100%;
-    }
 
-    
+    }
 }

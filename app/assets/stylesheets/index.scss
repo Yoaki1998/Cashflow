@@ -1,5 +1,6 @@
 @import url("components/card.scss");
 @import url("components/sidebar.scss");
+@import url("components/navbar.scss");
 @import url("components/transaction.scss");
 @import url("components/graph.scss");
 @import url("components/titlezone.scss");
@@ -60,9 +61,23 @@ body {
     .inferieur {
         display: block;
         position: relative;
-        top: 18vh;
+        top: 196px;
+    }  
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 100%;
     }
 
+    .supérieur {
+        width: 100vw;
+    }
+
+    .inferieur {
+        top: 130px;
+        width: 100vw;
+    }
     
 }
 /* Extra small devices (phones, 600px and down) */

@@ -3,6 +3,53 @@
     height: 50vh;
     overflow-y: auto;
     max-height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .transtable {
+        border-collapse: collapse;
+        margin: 25px 0;
+        min-width: 39vw;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        border-radius: 7px 7px 0px 0px ;
+        overflow: hidden;
+
+
+        th,td {
+            padding: 9px;
+        }
+
+        thead {
+            tr {
+                background-color: #48485e;
+                color: white;
+                text-align: left;
+                font-weight: bold;
+            }
+        }
+
+        tbody {
+
+            tr {
+                border-bottom: 1px solid #efefef;
+
+            }
+
+            tr:hover {
+                font-weight: bold;
+                color:#48485e ;
+            }
+           
+            tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            tr:last-of-type {
+                border-bottom: 2px solid #48485e ;
+            }
+        }
+    }
 }
 
 .transaction::-webkit-scrollbar {
@@ -16,8 +63,8 @@
     padding: 10px;
     font-size: 14px;
     padding-inline: 1.8vw;
-    position: relative;
-    top: 4.5vh;
+    position: absolute;
+    top: -1.5vh;
     margin-left: 19vw;
     
 }

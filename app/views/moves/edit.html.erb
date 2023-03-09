@@ -11,3 +11,5 @@
   <%= f.number_field :taux %>
   <%= f.submit %>
 <% end %>
+
+<%= link_to "delete", move_path(@move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>

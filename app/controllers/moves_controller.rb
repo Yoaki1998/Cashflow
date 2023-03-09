@@ -48,7 +48,7 @@ class MovesController < ApplicationController
   #Detruit un nouveau move ( mouvement d'argent ) + redirige sur la home
   def destroy
     @move.destroy
-    redirect_to move_path(@move),status: :see_other
+    redirect_to moves_path ,status: :see_other
   end
 
   #Recupère le taux de change de l'euro sur Google Finance

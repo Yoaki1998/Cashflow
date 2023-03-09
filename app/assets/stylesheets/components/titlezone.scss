@@ -41,8 +41,25 @@
     .titlezone {
     
         h1 {
-            font-size: 3vw;
-            line-height: 1.5vh;
+            font-size: 4vw;
+            line-height: 3.7vh;
+        }
+        div {
+            font-size: 2.6vw;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .titlezone {
+    
+        h1 {
+            font-size: 4.5vw;
+            line-height: 4vh;
+        }
+        div {
+            font-size: 3.1vw;
         }
     }
 }

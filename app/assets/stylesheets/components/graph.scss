@@ -12,8 +12,11 @@
     border-radius: 15px;
     padding: 20px;
 
-    div{
+    .graphtitle {
         margin-bottom: 3vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 

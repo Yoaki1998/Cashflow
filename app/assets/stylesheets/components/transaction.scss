@@ -63,10 +63,7 @@
     padding: 10px;
     font-size: 14px;
     padding-inline: 1.8vw;
-    position: absolute;
-    top: -1.5vh;
-    margin-left: 19vw;
-    
+    text-align: center;
 }
 
 @media only screen and (max-width: 992px) {
@@ -85,10 +82,6 @@
 
         li {
             font-size: 2vw;
-        }
-
-        .addbutton {
-            margin-left: 47vw;
         }
     }
     
@@ -130,10 +123,6 @@
         
         li {
             font-size: 2.6vw;
-        }
-        .addbutton {
-            font-size: 3vw;
-            margin-left: 47vw;
         }
     }
     

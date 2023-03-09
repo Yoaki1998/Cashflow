@@ -63,12 +63,14 @@
     <div class="inferieur">
         <div class="graphcont">
             <div class="graph">
-                <div>Cashflow Tracking</div>
+                <div class=graphtitle>
+                    <div>Cashflow Tracking</div>
+                    <%= link_to "Ajouter une transaction", new_move_path, class: "addbutton" %>
+                </div>
                 <%= area_chart @user.gdata.last(12), height: "27vh"  %>
             </div>
         </div>
         <div class="transaction">
-                <%= link_to "Ajouter une transaction", new_move_path, class: "addbutton" %>
             <table class = transtable>
                 <thead>
                     <tr>

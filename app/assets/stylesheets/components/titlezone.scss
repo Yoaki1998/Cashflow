@@ -4,7 +4,7 @@
     h1 {
         font-weight: 400;
         font-size: 2.3vw;
-        line-height: 60px;
+        line-height: 4vw;
         letter-spacing: 0.09em;
         color: white;
         margin: 0;
@@ -26,6 +26,7 @@
     
         h1 {
             font-size: 3vw;
+            line-height: 3vh;
         }
 
         div {
@@ -34,4 +35,16 @@
     }    
     
 }
+
+@media only screen and (max-width: 768px) {
+
+    .titlezone {
+    
+        h1 {
+            font-size: 3vw;
+            line-height: 1.5vh;
+        }
+    }
+}
+
 

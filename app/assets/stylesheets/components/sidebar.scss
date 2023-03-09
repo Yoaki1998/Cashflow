@@ -21,11 +21,11 @@
     .option {
         text-align: center;
         height: auto;
-        min-height: 63vh;
-        margin-top: 7vh;
+        min-height: 62vh;
+        margin-top: 6vh;
 
         .tab {
-            font-size: 3vh;
+            font-size: 1.9vw;
             line-height: 5vh;
             color: #FFFFFF;
         }
@@ -71,7 +71,9 @@
         }
 
         .option {
-            font-size: 1.3vw;  
+            font-size: 1.3vw; 
+            min-height: 62vh;
+            margin-top: 8.5vh; 
         }
 
         .user {

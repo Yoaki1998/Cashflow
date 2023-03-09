@@ -8,11 +8,11 @@
     justify-content: space-between;
     z-index: 100;
     align-items: end;
+    font-size: 2.5vw;
 
     .logo2 {
         font-style: normal;
         font-weight: 800;
-        font-size: 2vw;
         line-height: 36px;
         letter-spacing: 0.1em;
         color: rgb(182, 182, 182);
@@ -24,13 +24,11 @@
         display: flex;
         justify-content: space-around;
         flex-grow: 1;
-        font-size: 2vw;
         line-height: 36px;
     }
 
     .user2 {
         font-weight: 400;
-        font-size: 2vw;
         line-height: 36px;
         letter-spacing: 0.09em;
         color: rgb(182, 182, 182);
@@ -43,6 +41,14 @@
             margin-right: 1vw;
         }
     }
+
+    .menu {
+
+        display: none;
+        margin-right: 2vw;
+        font-weight: bold;
+        line-height: 36px;
+    }
     
 }
 
@@ -54,5 +60,25 @@
             display: flex;
         }
     }
+    
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .navbar {
+        font-size: 4.5vw;
+        .option2 {
+            display: none;
+        }
+
+        .user2 {
+            display: none;
+        }
+
+        .menu {
+            display: block;
+        }
+    }
+    
     
 }

@@ -28,7 +28,36 @@
         width: 90%;
         margin-left: 5%;
 
+        li {
+            font-size: 2vw;
+        }
+
         .addbutton {
+            margin-left: 47vw;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+
+    .transaction {
+
+        li {
+            font-size: 2.7vw;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .transaction {
+        
+        li {
+            font-size: 2.6vw;
+        }
+        .addbutton {
+            font-size: 3vw;
             margin-left: 47vw;
         }
     }

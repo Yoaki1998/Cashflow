@@ -8,6 +8,7 @@
         letter-spacing: 0.09em;
         color: white;
         margin: 0;
+        
     }
 
     div {
@@ -17,4 +18,19 @@
         letter-spacing: 0.09em;
         color: #B7B7B7;
     }
+}
+
+@media only screen and (max-width: 992px) {
+
+    .titlezone {
+    
+        h1 {
+            font-size: 3vw;
+        }
+
+        div {
+            font-size: 2vw;
+        }
+    }    
+    
 }

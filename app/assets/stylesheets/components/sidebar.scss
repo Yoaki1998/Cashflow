@@ -48,3 +48,26 @@
         }
     }
 }
+
+@media only screen and (max-width: 992px) {
+
+    .sidebar {
+        position: sticky;
+
+        .logo {
+            font-size: 3vw;  
+        }
+
+        .option {
+            font-size: 1.3vw;  
+        }
+
+        .user {
+            font-size: 2vw;  
+            .logout {
+                font-size: 1.9vw;
+            }
+        }
+    }
+
+}

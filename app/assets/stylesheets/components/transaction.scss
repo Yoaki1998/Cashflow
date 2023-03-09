@@ -8,3 +8,24 @@
 .transaction::-webkit-scrollbar {
     display: none;
 }
+
+.addbutton {
+    background: #26268D;
+    border-radius: 15px;
+    color: white;
+    padding: 10px;
+    padding-inline: 10%;
+    position: relative;
+    top: 5vh;
+    left: 19%;
+    
+}
+
+@media only screen and (max-width: 992px) {
+
+    .transaction {
+        width: 90%;
+        margin-left: 5%;
+    }
+    
+}

@@ -50,9 +50,15 @@
 }
 
 @media only screen and (max-width: 992px) {
+    
+    .sidecont {
+        display: block;
+        height: 143vh;
+    }
 
     .sidebar {
         position: sticky;
+        top:0;
 
         .logo {
             font-size: 3vw;  

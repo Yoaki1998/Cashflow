@@ -12,10 +12,10 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
   create_table "moves", force: :cascade do |t|
-    t.string "name"
-    t.string "version"
-    t.integer "amount"
-    t.datetime "date", default: "2023-03-08 18:40:06"
+    t.string "name", null: false
+    t.string "version", null: false
+    t.integer "amount", default: 0, null: false
+    t.datetime "date", default: "2023-03-10 04:38:52"
     t.integer "taux", default: 0, null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false

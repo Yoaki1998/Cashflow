@@ -32,6 +32,14 @@
             tr {
                 border: 1px solid #E3E3E3;
                 border-bottom: 1px solid #efefef;
+
+                td {
+                    a:-webkit-any-link  { 
+                        text-decoration: none; 
+                        font-weight: bold;
+                        color: #48485e;
+                    }
+                }
             }
 
             tr:hover {

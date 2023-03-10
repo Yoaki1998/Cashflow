@@ -117,7 +117,7 @@ private
 
   # Verifie que la date est celle du mois actuelle + Actualise la date des moves régulier
   def verif_date(move)
-    if move.date.to_date.month != DateTime.now.to_date.month && ['Revenu régulier','Dépense régulière','Investissement boursier'].include?(move.version)
+    if move.date.to_date.month != DateTime.now.to_date.month && ['Revenu régulier','Dépense régulière'].include?(move.version)
       move.update( date: DateTime.now )
     end   
     move.date.to_date.month == DateTime.now.to_date.month

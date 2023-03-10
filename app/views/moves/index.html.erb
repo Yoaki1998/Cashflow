@@ -53,7 +53,7 @@
             <div>
                 <div class="title">Revenu Mensuel</div>
                 <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev.to_f} €" : "#{@rev.to_f} €"  %> </div>
-                <div class="sub"> Top : <%= @rank %>  % ( France ) | Dépense : -<%= @lose %> € </div>
+                <div class="sub"> Top : <%= @rank %> % | Dépense : -<%= @lose %> € </div>
             </div>
         </div>
         <div class="card" >
@@ -92,7 +92,7 @@
                             <td><%= move.name %></td> 
                             <td><%= move.version %></td> 
                             <td><%= move.amount %> €</td> 
-                            <td><%= link_to "edit", edit_move_path(move.id)  %></td> 
+                            <td><%= link_to "Modifier", edit_move_path(move.id)  %></td> 
                         </tr>
                     <%end%>
                 </tbody>

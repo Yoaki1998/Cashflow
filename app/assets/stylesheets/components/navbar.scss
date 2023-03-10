@@ -52,6 +52,27 @@
     
 }
 
+.v2 {
+    display: flex;
+    position: absolute;
+
+    .option2 {
+        
+        .tab {
+            font-size: 25px;
+        }
+    }
+
+    .user2 {
+        display: flex;
+        font-size: 20px;
+        font-weight: bold;
+         .logout {
+            font-size: 13px;
+         }
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .navbar {
         display: flex;
@@ -60,6 +81,16 @@
             display: flex;
         }
     }
+    
+    .v2 {
+
+    .option2 {
+        
+        .tab {
+            font-size: 20px;
+        }
+    }
+}
     
 }
 

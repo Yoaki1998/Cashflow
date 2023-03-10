@@ -1,4 +1,21 @@
 <%= stylesheet_link_tag ("new") %>
+
+<div class="navbar v2">
+        <div class="logo2">
+        <div>YK</div>
+    </div>
+    <div class="option2">
+        <div class="tab">Dashboard</div>
+        <div class="tab">Projet</div>
+        <div class="tab">About</div>
+    </div>       
+    <div class="user2">
+        <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
+        <div> Yoaki Niscoise </div>
+    </div>
+    <div class="menu">Menu</div>
+</div>
+
 <div class="fakebody">
   <div class="containerform">
     <div class="titleform"> TRANSACTION FORM</div>

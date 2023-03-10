@@ -92,7 +92,7 @@ a:link { text-decoration: none; }
     }
 
     .b {
-        margin-top: 40px;
+        margin-top: 62px;
     }
 
     .b2 {
@@ -108,10 +108,41 @@ a:link { text-decoration: none; }
         font-weight: bold;
         border-radius: 5px;
         margin-top: 5px;
+        margin-right: 10px;
 
-        a:link { 
+        a:-webkit-any-link { 
             text-decoration: none; 
             color: white;
         }
     }
 }
+
+
+@media only screen and (max-width: 390px) {
+    
+    .containerform {
+        
+        .submit {
+            width: 100%;
+        }
+
+        .deleteb {
+            width: 94.5%;
+        }
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    
+    .containerform {
+        
+        .submit {
+            width: 100%;
+        }
+
+        .deleteb {
+            width: 93.5%;
+        }
+    }
+}
+

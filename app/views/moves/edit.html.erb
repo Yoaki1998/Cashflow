@@ -1,15 +1,28 @@
-<h1>Moves#edit</h1>
-<p>Find me in app/views/moves/edit.html.erb</p>
-<%= form_with model: @move do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :type %>
-  <%= f.select :version, ['Revenu régulier', 'Revenu ponctuel','Dépense régulière','Dépense ponctuelle','Investissement boursier','Epargne']%>
-  <%= f.label :amount %>
-  <%= f.number_field :amount %>
-  <%= f.label :taux %>
-  <%= f.number_field :taux %>
-  <%= f.submit %>
-<% end %>
-
-<%= link_to "delete", move_path(@move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>
+<%= stylesheet_link_tag ("new") %>
+<div class="fakebody">
+  <div class="containerform">
+    <div class="titleform"> TRANSACTION FORM</div>
+    <%= form_with model: @move do |f| %>
+      <div class="row">
+        <%= f.label :name, "Nom"%>
+        <%= f.text_field :name %>
+      </div>
+      <div class="row">
+            <%= f.label :amount,"Montant" %>
+        <%= f.number_field :amount %>
+      </div>
+      <div class="rdfield">
+        <% ['Revenu régulier', 'Revenu ponctuel','Dépense régulière','Dépense ponctuelle','Epargne'].each do |type|%>
+          <div>
+            <%= f.radio_button :version, type%>
+            <%= f.label :type, type %>
+          </div>
+        <%end%>
+      </div>
+        <%= f.submit value:"AJOUTER", class:"submit b2" %>
+        <div class="deleteb">
+          <%= link_to "SUPPRIMER", move_path(@move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        </div>
+    <% end %>
+  </div>
+</div>

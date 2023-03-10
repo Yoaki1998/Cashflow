@@ -1,26 +1,25 @@
 <%= stylesheet_link_tag ("new") %>
-<div class="containerform">
-  <div class="titleform"> Transaction</div>
-  <%= form_with model: @move do |f| %>
-    <div>
-      <%= f.label :name, "Nom"%>
-      <%= f.text_field :name %>
-    </div>
-    <div>
-      <%= f.label :amount,"Montant" %>
-      <%= f.number_field :amount %>
-    </div>
-    <div class="rdfield">
-    <% ['Revenu régulier', 'Revenu ponctuel','Dépense régulière','Dépense ponctuelle','Epargne'].each do |type|%>
-      <div>
-        <%= f.radio_button :version, type%>
-        <%= f.label :type, type %>
+<div class="fakebody">
+  <div class="containerform">
+    <div class="titleform"> TRANSACTION FORM</div>
+    <%= form_with model: @move do |f| %>
+      <div class="row">
+        <%= f.label :name, "Nom"%>
+        <%= f.text_field :name %>
       </div>
-    <%end%>
-    </div>
-    <div class ="submitb">
-      <%= f.submit %>
-    </div>
-    
-  <% end %>
+      <div class="row">
+            <%= f.label :amount,"Montant" %>
+        <%= f.number_field :amount %>
+      </div>
+      <div class="rdfield">
+        <% ['Revenu régulier', 'Revenu ponctuel','Dépense régulière','Dépense ponctuelle','Epargne'].each do |type|%>
+          <div>
+            <%= f.radio_button :version, type%>
+            <%= f.label :type, type %>
+          </div>
+        <%end%>
+      </div>
+        <%= f.submit value:"Ajouter", class:"submit b" %>
+    <% end %>
+  </div>
 </div>

@@ -95,10 +95,6 @@ private
           cf -= move.amount
         when "Dépense ponctuelle"
           cf -= move.amount
-        when "Investissement boursier"
-          yearly_g = move.amount * move.taux / 100
-          monthly_g = yearly_g * 0.7 / 12
-          cf += monthly_g
         when "Epargne"
           cf -= move.amount 
           @user.epargne += move.amount 
@@ -114,10 +110,7 @@ private
   def epargne_goal
     revenu = 0
     Move.all.each do |move|
-      ["Revenu ponctuel","Revenu régulier"].include?(move.version) && verif_user(move)  ? revenu += move.amount : "" 
-      yearly_g = move.amount * move.taux / 100
-      monthly_g = yearly_g * 0.7 / 12
-      "Investissement boursier" == move.version ? revenu += monthly_g : "" 
+      ["Revenu régulier"].include?(move.version) && verif_user(move)  ? revenu += move.amount : "" 
     end
     @goal = (revenu * 6).truncate 
   end

@@ -53,7 +53,7 @@
             <div>
                 <div class="title">Revenu Mensuel</div>
                 <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev.to_f} €" : "#{@rev.to_f} €"  %> </div>
-                <div class="sub"> Top : <%= @rank %>  % ( France ) </div>
+                <div class="sub"> Top : <%= @rank %>  % ( France ) | Dépense : -<%= @lose %> € </div>
             </div>
         </div>
         <div class="card" >

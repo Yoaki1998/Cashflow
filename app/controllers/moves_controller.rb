@@ -39,7 +39,6 @@ class MovesController < ApplicationController
   #Update un move ( mouvement d'argent ) + redirige sur la home
   def update
     @move.update(move_params)
-    @move.taux == "" ? @move.taux = 0 : ""
     @move.updated_at = DateTime.now
     redirect_to moves_path
     
@@ -75,7 +74,7 @@ private
 
   #Verification avec des paramètre fort
   def move_params
-    params.require(:move).permit(:name, :version, :amount, :taux)
+    params.require(:move).permit(:name, :version, :amount)
   end
 
 
@@ -88,7 +87,9 @@ private
       if verif_user(move) 
         case move.version
         when "Revenu régulier" 
+          puts move.amount
           cf += move.amount
+          puts cf
         when "Revenu ponctuel"
           cf += move.amount
         when "Dépense régulière" 

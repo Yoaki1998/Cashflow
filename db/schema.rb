@@ -14,9 +14,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
   create_table "moves", force: :cascade do |t|
     t.string "name", null: false
     t.string "version", null: false
-    t.integer "amount", default: 0, null: false
-    t.datetime "date", default: "2023-03-10 04:38:52"
-    t.integer "taux", default: 0, null: false
+    t.float "amount", default: 0.0, null: false
+    t.datetime "date", default: "2023-03-10 15:45:35"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,14 +23,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "gdata", default: ""
-    t.integer "cashflow", default: 0
-    t.integer "epargne", default: 0
+    t.float "cashflow", default: 0.0
+    t.float "epargne", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

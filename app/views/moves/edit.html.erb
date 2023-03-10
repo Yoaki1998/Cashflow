@@ -24,7 +24,7 @@
       </div>
       <div class="row">
             <%= f.label :amount,"Montant" %>
-        <%= f.number_field :amount %>
+        <%= f.number_field :amount, step: :any %>
       </div>
       <div class="rdfield">
         <% ['Revenu régulier', 'Revenu ponctuel','Dépense régulière','Dépense ponctuelle','Epargne'].each do |type|%>
@@ -34,7 +34,7 @@
           </div>
         <%end%>
       </div>
-        <%= f.submit value:"AJOUTER", class:"submit b2" %>
+        <%= f.submit value:"MODIFIER", class:"submit b2" %>
         <div class="deleteb">
           <%= link_to "SUPPRIMER", move_path(@move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
         </div>

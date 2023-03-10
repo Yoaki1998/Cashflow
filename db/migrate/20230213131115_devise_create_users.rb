@@ -4,6 +4,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
       ## Database authenticatable
+      t.string :first_name,              null: false
+      t.string :last_name,              null: false
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
@@ -34,8 +36,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
 
       ##Custom 
       t.string :gdata, default: ""
-      t.integer :cashflow, default: 0
-      t.integer :epargne, default: 0
+      t.float :cashflow, default: 0
+      t.float :epargne, default: 0
 
 
       t.timestamps null: false

@@ -25,6 +25,18 @@
         justify-content: space-around;
         flex-grow: 1;
         line-height: 36px;
+
+        .tab {
+
+            :hover {
+                font-weight: bold;
+            }
+        }
+
+        a {
+            color: rgb(182, 182, 182);
+
+        }
     }
 
     .user2 {
@@ -33,6 +45,7 @@
         letter-spacing: 0.09em;
         color: rgb(182, 182, 182);
         margin-right: 2vw;
+        font-weight: bold;
 
         .logout {
             font-weight: 700;
@@ -66,7 +79,6 @@
     .user2 {
         display: flex;
         font-size: 20px;
-        font-weight: bold;
          .logout {
             font-size: 13px;
          }

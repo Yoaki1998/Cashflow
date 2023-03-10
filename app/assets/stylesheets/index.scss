@@ -13,7 +13,7 @@
     }
   }
 
-a:link { text-decoration: none; }
+a:-webkit-any-link { text-decoration: none; }
 
 body {
     margin: 0;

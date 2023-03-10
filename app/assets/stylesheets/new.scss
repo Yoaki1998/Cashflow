@@ -101,19 +101,26 @@ a:link { text-decoration: none; }
 
     .deleteb {
         text-align: center;
-        width: 95.5%;
         border: 0;
         background-color: #801919;
-        padding: 12px 10px;
         font-weight: bold;
         border-radius: 5px;
         margin-top: 5px;
-        margin-right: 10px;
+        text-decoration: none; 
+        color: white;
+        padding: 12px 10px ;
+        width: 100%;
 
-        a:-webkit-any-link { 
-            text-decoration: none; 
-            color: white;
-        }
+
+    }
+
+    .bfield {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100px;
+        flex-wrap: wrap;
+
     }
 }
 

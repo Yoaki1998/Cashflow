@@ -34,9 +34,9 @@
           </div>
         <%end%>
       </div>
-        <%= f.submit value:"MODIFIER", class:"submit b2" %>
-        <div class="deleteb">
-          <%= link_to "SUPPRIMER", move_path(@move), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        <div class="bfield">
+          <%= f.submit value:"MODIFIER", class:"submit b2" %>
+          <%= link_to "SUPPRIMER", move_path(@move), class: "deleteb", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
         </div>
     <% end %>
   </div>

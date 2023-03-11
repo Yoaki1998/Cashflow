@@ -1,4 +1,5 @@
 class MovesController < ApplicationController
+  before_action :authenticate_user!
   #Crée une instance d'utilisateur
   before_action :set_user, only: [:create, :index, :graphdata]
   #Trouve un move a partir d'un ID
@@ -18,6 +19,7 @@ class MovesController < ApplicationController
   end
 
   def show
+    redirect_to moves_path
   end
 
   def new
@@ -56,7 +58,7 @@ class MovesController < ApplicationController
     redirect_to moves_path ,status: :see_other
   end
 
-  #Recupère le taux de change de l'euro sur Google Finance
+  #Recupère le taux de change de l'euro sur Google Finance [UNUSED]
   def scrapping_euro
     require "open-uri"
     require "nokogiri"
@@ -140,6 +142,7 @@ private
     end
   end  
 
+  #Calcule la position sur l'echelle %population/Salaire des revenue de l'utilisateur
   def flexp
     revlose()
     @rank = 100
@@ -164,6 +167,7 @@ private
     @user.save
   end
 
+  #Calcule les liquidité théorique de l'utilisateur [Cashflow * nombre de mois]
   def liquid 
     @snake = -1
     @user.gdata.each do |mois|

@@ -35,6 +35,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       # t.datetime :locked_at
 
       ##Custom 
+      t.float :p_expense, default: 0
+      t.float :liquidity, default: 0
       t.string :gdata, default: ""
       t.float :cashflow, default: 0
       t.float :epargne, default: 0

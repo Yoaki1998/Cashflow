@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag ("index") %>
+
 <div class="sidecont">
     <div class="sidebar">
         <div class="logo">
@@ -41,16 +43,32 @@
     </div>
 
     <div class=inferieur>
+        <%= link_to "Nouveau projet", new_projet_path  %>
+        <%= @user.liquidity %>
         <ul>
-            <% @user.projets.sort.each do |projet| %>
+            <% @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == false}.each do |projet| %>
                 <li> 
                     <%= projet.priority %>  
                     <%= projet.name %> 
                     <%= projet.amount %> 
                     Complete:<%= projet.complete%>  
+                    Loading :<%= projet.load.round(1)  %>
                     <%= link_to "edit", edit_projet_path(projet) %>
+                    <%= link_to "complete", projet_completion_path(projet) %>
                 </li>
             <%end%>
         </ul>    
+        <ul>
+            <% @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == true}.each do |projet| %>
+                <li> 
+                    <%= projet.priority %>  
+                    <%= projet.name %> 
+                    <%= projet.amount %> 
+                    Complete:<%= projet.complete%>  
+                    Loading :<%= projet.load.round(1)  %>
+                    
+                </li>
+            <%end%>
+        </ul>  
     </div>
 </div>

@@ -1,7 +1,7 @@
 class MovesController < ApplicationController
   before_action :authenticate_user!
   #Crée une instance d'utilisateur
-  before_action :set_user, only: [:create, :index, :graphdata]
+  before_action :set_user, only: [:create, :index, :graphdata, :liquid]
   #Trouve un move a partir d'un ID
   before_action :find_move, only: [:show, :edit, :update, :destroy]
 
@@ -62,19 +62,18 @@ class MovesController < ApplicationController
   def scrapping_euro
     require "open-uri"
     require "nokogiri"
-
+    
     url = "https://www.google.com/finance/quote/EUR-USD"
-
+    
     html_file = URI.open(url).read
     html_doc = Nokogiri::HTML.parse(html_file)
-
+    
     html_doc.search(".fxKbKc").each do |element|
       @veuro = element.text.strip
     end
   end
-
-
-
+  
+  
 #------------------------------------------------------------------------------------------------------------------------------------#
 private
 
@@ -169,14 +168,14 @@ private
 
   #Calcule les liquidité théorique de l'utilisateur [Cashflow * nombre de mois]
   def liquid 
-    @snake = -1
+    snake = -1
     @user.gdata.each do |mois|
-      puts mois[1]
-      @snake = @snake + (mois[1]) 
-      puts @snake
+      snake = snake + (mois[1]) 
     end
-    
-  end
+    snake -= @user.p_expense
+    @user.liquidity = snake
+    @user.save!
+  end  
 
   def set_user
     @user = current_user

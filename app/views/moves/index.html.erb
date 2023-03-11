@@ -59,7 +59,7 @@
         <div class="card" >
             <div>
                 <div class="title">Liquidité</div>
-                <div class="value"> <%= @snake > 0 ? "+ #{@snake.to_f} €" : "#{@snake.to_f} €"  %> </div>
+                <div class="value"> <%= @user.liquidity > 0 ? "+ #{@user.liquidity} €" : "#{@user.liquidity} €"  %> </div>
                 <div class="sub"> Epargne(6 mois) : <%= @user.epargne %>/<%= @goal %>€ </div>
             </div>
         </div>

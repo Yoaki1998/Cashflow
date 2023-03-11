@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :moves
+  has_many :projets
 
   serialize :gdata, Array
 

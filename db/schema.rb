@@ -10,16 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_11_155831) do
   create_table "moves", force: :cascade do |t|
     t.string "name", null: false
     t.string "version", null: false
     t.float "amount", null: false
-    t.datetime "date", default: "2023-03-11 12:04:14"
+    t.datetime "date", default: "2023-03-11 16:26:57"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_moves_on_user_id"
+  end
+
+  create_table "projets", force: :cascade do |t|
+    t.string "name"
+    t.integer "priority"
+    t.float "amount"
+    t.boolean "complete", default: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +51,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
   end
 
   add_foreign_key "moves", "users"
+  add_foreign_key "projets", "users"
 end

@@ -61,4 +61,11 @@ Move.create(name:"Loisir", amount:80, version:"Dépense régulière", user_id:2,
 Move.create(name:"Loyer", amount:700, version:"Dépense régulière", user_id:2, date: DateTime.now)
 Move.create(name:"Epargne", amount:500, version:"Epargne", user_id:2, date: DateTime.now)
 
+
+Projet.create(name:"Voiture", amount:3200, priority:1, user_id:1)
+Projet.create(name:"Maison", amount:48000, priority:2, user_id:1)
+Projet.create(name:"Chien", amount:1200, priority:5, user_id:1)
+Projet.create(name:"PS5", amount:500, priority:3, user_id:1)
+Projet.create(name:"RAM", amount:200, priority:4, user_id:1)
+
 puts "Finished!"

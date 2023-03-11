@@ -1,2 +1,56 @@
-<h1>Projets#index</h1>
-<p>Find me in app/views/projets/index.html.erb</p>
+<div class="sidecont">
+    <div class="sidebar">
+        <div class="logo">
+            <div>YK</div>
+        </div>
+        <div class="option">
+            <div class="tab"><%= link_to "DASHBOARD", moves_path %></div>
+            <div class="tab"><%= link_to "PROJETS", projets_path %></div>
+            <div class="tab">ABOUT</div>
+        </div>
+        <div class="user">
+            <%= @user.first_name %> <%= @user.last_name %>
+            <div>
+                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class=navbar>
+            <div class="logo2">
+            <div>YK</div>
+        </div>
+        <div class="option2">
+            <div class="tab"><%= link_to "Dashboard", moves_path %></div>
+            <div class="tab"><%= link_to "Projets", projets_path %>t</div>
+            <div class="tab">About</div>
+        </div>       
+        <div class="user2">
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
+            <div> Yoaki Niscoise </div>
+        </div>
+        <div class="menu">Menu</div>
+    </div>
+    <div class=supérieur>
+        <div class=titlezone>
+            <h1>Welcome <%= @user.first_name %> <%= @user.last_name %> </h1>
+            <div>We are here to help you manage your money!</div>
+        </div>
+    </div>
+
+    <div class=inferieur>
+        <ul>
+            <% @user.projets.sort.each do |projet| %>
+                <li> 
+                    <%= projet.priority %>  
+                    <%= projet.name %> 
+                    <%= projet.amount %> 
+                    Complete:<%= projet.complete%>  
+                    <%= link_to "edit", edit_projet_path(projet) %>
+                </li>
+            <%end%>
+        </ul>    
+    </div>
+</div>

@@ -14,8 +14,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_140250) do
   create_table "moves", force: :cascade do |t|
     t.string "name", null: false
     t.string "version", null: false
-    t.float "amount", default: 0.0, null: false
-    t.datetime "date", default: "2023-03-10 15:45:35"
+    t.float "amount", null: false
+    t.datetime "date", default: "2023-03-11 12:04:14"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

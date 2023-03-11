@@ -16,8 +16,19 @@
 </div>
 <div class="fakebody">
   <div class="containerform">
-    <div class="titleform"> TRANSACTION FORM</div>
-    <%= form_with model: @move do |f| %>
+
+    <% if @move.errors.any? %>
+      <div class="titleform error"> 
+        <% @move.errors.full_messages.each do |message|%>
+          <%= message %> <br> 
+        <%end%>
+      </div>
+    <%else%>
+      <div class="titleform"> MODIFICATION FORM</div>  
+    <%end%>
+
+
+    <%= form_with model: @move, data: {turbo: false} do |f| %>
       <div class="row">
         <%= f.label :name, "Nom"%>
         <%= f.text_field :name %>

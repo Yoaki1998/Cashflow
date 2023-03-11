@@ -29,8 +29,11 @@ class MovesController < ApplicationController
     @move = Move.new(move_params)
     @move.date = DateTime.now
     @move.user_id = @user.id
-    @move.save
-    redirect_to moves_path
+    if @move.save
+      redirect_to moves_path
+    else 
+      render :new 
+    end   
   end
 
   def edit
@@ -38,9 +41,12 @@ class MovesController < ApplicationController
 
   #Update un move ( mouvement d'argent ) + redirige sur la home
   def update
-    @move.update(move_params)
     @move.updated_at = DateTime.now
-    redirect_to moves_path
+    if @move.update(move_params)
+      redirect_to moves_path
+    else 
+      render :edit
+    end  
     
   end
 
@@ -104,7 +110,7 @@ private
     end 
     @user.cashflow = cf
     @user.gdata == "" ? @user.gdata = [] : ""
-    @user.save  
+    @user.save!  
   end
 
   #Calcule l'objectif d'épargne de l'utilisateur actuel
@@ -119,7 +125,7 @@ private
   # Verifie que la date est celle du mois actuelle + Actualise la date des moves régulier
   def verif_date(move)
     if move.date.to_date.month != DateTime.now.to_date.month && ['Revenu régulier','Dépense régulière'].include?(move.version)
-      move.update( date: DateTime.now )
+      move.update!( date: DateTime.now )
     end   
     move.date.to_date.month == DateTime.now.to_date.month
   end 

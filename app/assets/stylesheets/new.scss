@@ -42,8 +42,13 @@ a:link { text-decoration: none; }
         height: 15%;
         color: #26268D;
         font-size: 28px;
-    }
 
+    }
+    .error {
+        color: #d80d0d;
+        font-size: 100%;
+    }
+    
     .row {
         display: flex;
         justify-content: space-between;

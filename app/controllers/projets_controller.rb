@@ -38,13 +38,12 @@ class ProjetsController < ApplicationController
   def edit
   end
   
+  #Finance le projets (passe de complete false a true)
   def completion 
     @projet = Projet.find(params[:projet_id])
     if @projet.load == 100 
       @projet.complete = true
-      @user.liquidity -= @projet.amount
       @projet.save
-      @user.save
     end
     redirect_to projets_path
   end 
@@ -52,6 +51,7 @@ class ProjetsController < ApplicationController
   #------------------------------------------------------------------------------------------------------------
   private
 
+  #Calcule les coup total des projets financés
   def payed 
     expense = 0
     @user.projets.find_all{|projet| projet.complete == true}.each do |projet|
@@ -60,7 +60,8 @@ class ProjetsController < ApplicationController
     @user.p_expense = expense
     @user.save
   end 
-
+  
+  #Calcule les mois restant avant financement et le pourcentage financable actuel de chaque projet ( en fonction de leur priorité ) 
   def loading_plus_month
     liquid = @user.liquidity
     stocker = 0

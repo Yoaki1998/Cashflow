@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_155831) do
     t.string "name", null: false
     t.string "version", null: false
     t.float "amount", null: false
-    t.datetime "date", default: "2023-03-11 22:33:40"
+    t.datetime "date", default: "2023-03-12 00:45:36"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_155831) do
     t.integer "priority"
     t.float "amount"
     t.float "load", default: 0.0
+    t.float "month_left", default: 0.0
     t.boolean "complete", default: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false

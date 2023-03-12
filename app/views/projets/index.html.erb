@@ -41,34 +41,59 @@
             <div>We are here to help you manage your money!</div>
         </div>
     </div>
-
     <div class=inferieur>
-        <%= link_to "Nouveau projet", new_projet_path  %>
-        <%= @user.liquidity %>
-        <ul>
-            <% @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == false}.each do |projet| %>
-                <li> 
-                    <%= projet.priority %>  
-                    <%= projet.name %> 
-                    <%= projet.amount %> 
-                    Complete:<%= projet.complete%>  
-                    Loading :<%= projet.load.round(1)  %>
-                    <%= link_to "edit", edit_projet_path(projet) %>
-                    <%= link_to "complete", projet_completion_path(projet) %>
-                </li>
-            <%end%>
-        </ul>    
-        <ul>
-            <% @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == true}.each do |projet| %>
-                <li> 
-                    <%= projet.priority %>  
-                    <%= projet.name %> 
-                    <%= projet.amount %> 
-                    Complete:<%= projet.complete%>  
-                    Loading :<%= projet.load.round(1)  %>
-                    
-                </li>
-            <%end%>
-        </ul>  
+    <%= link_to "Nouveau projet", new_projet_path  %>  
+        <div class="transaction">
+            <table class = transtable>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Name</th>
+                        <th>Montant</th>
+                        <th>Loading</th>
+                        <th>Month left</th>
+                        <th>Option</th>
+                        <th>Financer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == false}.each do |projet| %>
+                        <tr>
+                            <td><%= projet.priority %></td> 
+                            <td><%= projet.name %></td> 
+                            <td><%= projet.amount %> €</td> 
+                            <td><%= projet.load.round(1) %>%</td>
+                            <td><%= projet.month_left.round(1) %> month</td>
+                            <td><%= link_to "edit", edit_projet_path(projet) %></td> 
+                            <td><%= link_to "Invest", projet_completion_path(projet), data: { turbo_confirm: 'Are you sure?'} %></td> 
+                        </tr>
+                    <%end%>
+                </tbody>
+            </table>    
+        </div>  
+        <div class="transaction">
+            <table class = transtable>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Name</th>
+                        <th>Montant</th>
+                        <th>Loading</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == true}.each do |projet| %>
+                        <tr>
+                            <td><%= projet.priority %></td> 
+                            <td><%= projet.name %></td> 
+                            <td><%= projet.amount %> €</td> 
+                            <td><%= projet.load.round(1) %>%</td> 
+                            <td><%= link_to "edit", edit_projet_path(projet) %></td> 
+                        </tr>
+                    <%end%>
+                </tbody>
+            </table>    
+        </div>  
     </div>
 </div>

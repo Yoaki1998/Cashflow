@@ -5,7 +5,7 @@ class ProjetsController < ApplicationController
   
   def index
     @user.projets.all
-    loading()
+    loading_plus_month()
     payed()
   end
 
@@ -49,6 +49,9 @@ class ProjetsController < ApplicationController
     redirect_to projets_path
   end 
 
+  #------------------------------------------------------------------------------------------------------------
+  private
+
   def payed 
     expense = 0
     @user.projets.find_all{|projet| projet.complete == true}.each do |projet|
@@ -57,23 +60,26 @@ class ProjetsController < ApplicationController
     @user.p_expense = expense
     @user.save
   end 
-#------------------------------------------------------------------------------------------------------------
-  private
 
-  def loading
+  def loading_plus_month
     liquid = @user.liquidity
+    stocker = 0
     @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == false}.each do |projet|
       if liquid - projet.amount >= 0 
         liquid -= projet.amount
+        projet.month_left = 0
         projet.load = 100
         projet.save
       else 
+        projet.month_left = @user.cashflow >= 0 ? (( projet.amount - liquid ) / @user.cashflow ) + stocker : 999
+        stocker = projet.month_left
         projet.load = (liquid / projet.amount) * 100
         liquid = 0
         projet.save
       end
     end
   end
+
 
   
   def projet_params

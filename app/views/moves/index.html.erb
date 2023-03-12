@@ -45,21 +45,21 @@
         <div class="card" >
             <div>
                 <div class="title">Cashflow</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow.to_f} €" : "#{@user.cashflow.to_f} €"  %> </div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@user.cashflow.round(2)} €" : "#{@user.cashflow.round(2)} €"  %> </div>
                 <div class="sub"> Variation(mois) : <%= @var > 0 ? "+ #{@var} %" : "#{@var} %"  %> </div>
             </div>
         </div>
         <div class="card" >
             <div>
                 <div class="title">Revenu Mensuel</div>
-                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev.to_f} €" : "#{@rev.to_f} €"  %> </div>
+                <div class="value"> <%= @user.cashflow > 0 ? "+ #{@rev.round(2)} €" : "#{@rev.round(2)} €"  %> </div>
                 <div class="sub"> Top : <%= @rank %> % | Dépense : -<%= @lose %> € </div>
             </div>
         </div>
         <div class="card" >
             <div>
                 <div class="title">Liquidité</div>
-                <div class="value"> <%= @user.liquidity > 0 ? "+ #{@user.liquidity} €" : "#{@user.liquidity} €"  %> </div>
+                <div class="value"> <%= @user.liquidity > 0 ? "+ #{@user.liquidity.round(2)} €" : "#{@user.liquidity.round(2)} €"  %> </div>
                 <div class="sub"> Epargne(6 mois) : <%= @user.epargne %>/<%= @goal %>€ </div>
             </div>
         </div>

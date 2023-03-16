@@ -13,8 +13,8 @@
 #   rake "some:great:rake:task"
 # end
 every :hour do
-    runner "Move.graphdata"
-  end
+  runner 'Move.graphdata'
+end
 #
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"

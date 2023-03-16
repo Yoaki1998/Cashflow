@@ -5,7 +5,7 @@ class CreateProjets < ActiveRecord::Migration[7.0]
       t.integer :priority
       t.float :amount
       t.float :load, default: 0
-      t.float :month_left, default:0
+      t.float :month_left, default: 0
       t.boolean :complete, default: false
       t.references :user, null: false, foreign_key: true
 

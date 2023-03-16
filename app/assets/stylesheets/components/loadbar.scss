@@ -1,0 +1,39 @@
+// Color Variables ======================================
+$green: #0f3dbd;
+$gray-light: #eef1f3;
+
+// Bar Variables ========================================
+$bar-size: 5px;
+$bar-radius: 60px;
+$bar-bg: rgba(0,0,0,0.075);
+
+body {
+  background: $gray-light;
+}
+
+
+
+// Bar ============================================
+.progress-bar {
+	border-radius: $bar-radius;
+	overflow: hidden;
+  width: 100%;
+
+	span {
+		display: block;
+	}
+
+}
+
+.bar {
+  background: $bar-bg;
+}
+
+.progress {
+  // Change the animation fill mode 'infinite' to 'forwards' to stop the animation from repeating.
+  background: $green;
+  color: #fff;
+  padding: $bar-size;
+  width: 20%;
+}
+

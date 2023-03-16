@@ -12,9 +12,9 @@
         </div>
         <div class="user">
             <%= @user.first_name %> <%= @user.last_name %>
-            <div>
-                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
-            </div>
+            <%= link_to destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item" do %>
+                <i class="fa-solid fa-right-from-bracket"></i>
+            <%end%>
         </div>
     </div>
 </div>
@@ -30,10 +30,12 @@
             <div class="tab">About</div>
         </div>       
         <div class="user2">
-            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
             <div> Yoaki Niscoise </div>
+                <%= link_to destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item" do %>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                <%end%>
         </div>
-        <div class="menu">Menu</div>
+        <i class="fa-solid fa-bars menu"></i>
     </div>
     <div class=supérieur>
         <div class=titlezone>
@@ -41,9 +43,10 @@
             <div>We are here to help you manage your money!</div>
         </div>
     </div>
-    <div class=inferieur>
-    <%= link_to "Nouveau projet", new_projet_path  %>  
-        <div class="transaction">
+    <%= link_to "Nouveau projet", new_projet_path , class: "projbutton" %>  
+    <div class="inferieur proj">
+        <div class="transaction bis">
+            <h1 class="title">Projets à financé</h1>
             <table class = transtable>
                 <thead>
                     <tr>
@@ -51,7 +54,7 @@
                         <th>Name</th>
                         <th>Montant</th>
                         <th>Loading</th>
-                        <th>Month left</th>
+                        <th>Left</th>
                         <th>Option</th>
                         <th>Financer</th>
                     </tr>
@@ -62,17 +65,24 @@
                             <td><%= projet.priority %></td> 
                             <td><%= projet.name %></td> 
                             <td><%= projet.amount %> €</td> 
-                            <td><%= projet.load.round(1) %>%</td>
+                            <td>
+                                <div class="progress-bar">
+                                    <span class="bar">
+                                        <span class="progress" style="width:<%= projet.load.round(1) %>%"></span>
+                                    </span>
+                                </div>
+                            </td>
                             <td><%= projet.month_left.round(1) %> month</td>
-                            <td><%= link_to "edit", edit_projet_path(projet) %></td> 
-                            <td><%= link_to "Invest", projet_completion_path(projet), data: { turbo_confirm: 'Are you sure?'} %></td> 
+                            <td><%= link_to edit_projet_path(projet) do %>  <i class="fa-solid fa-pen-to-square"></i> <%end %> </td> 
+                            <td><%= link_to projet_completion_path(projet) do %> <i class="fa-solid fa-money-bill"></i> Pay <%end %> </td> 
                         </tr>
                     <%end%>
                 </tbody>
             </table>    
         </div>  
-        <div class="transaction">
-            <table class = transtable>
+        <div class="transaction bis">
+            <h1 class="title">Historique de projet</h1>
+            <table class = "transtable">
                 <thead>
                     <tr>
                         <th>Priority</th>
@@ -88,8 +98,14 @@
                             <td><%= projet.priority %></td> 
                             <td><%= projet.name %></td> 
                             <td><%= projet.amount %> €</td> 
-                            <td><%= projet.load.round(1) %>%</td> 
-                            <td><%= link_to "edit", edit_projet_path(projet) %></td> 
+                            <td>
+                                <div class="progress-bar">
+                                    <span class="bar">
+                                        <span class="progress" style="width:<%= projet.load.round(1) %>%"></span>
+                                    </span>
+                                </div>
+                            </td>
+                            <td><%= link_to edit_projet_path(projet) do %>  <i class="fa-solid fa-pen-to-square"></i> <%end %> </td> 
                         </tr>
                     <%end%>
                 </tbody>

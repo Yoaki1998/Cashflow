@@ -21,7 +21,7 @@ user.gdata = [
   ['October', 553.762],
   ['December', 553.762],
   ['January', 553.762],
-  ['February', 473, 762]
+  ['February', 473.762]
 ]
 user.password = 'b1a3c41e'
 user.password_confirmation = 'b1a3c41e'

@@ -37,7 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       # #Custom
       t.float :p_expense, default: 0
       t.float :liquidity, default: 0
-      t.string :gdata, default: ""
+      t.string :gdata, array: true, default: []
       t.float :cashflow, default: 0
       t.float :epargne, default: 0
 

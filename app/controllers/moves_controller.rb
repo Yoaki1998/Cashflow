@@ -153,9 +153,13 @@ class MovesController < ApplicationController
 
   # Calcule la variation de revenue par rapport au mois précédent
   def variation
-    lastm = @user.gdata[-2][1]
-    actualm = @user.gdata.last[1]
-    @var = (((actualm.to_f / lastm) - 1) * 100).round(1)
+    if @user.gdata.length > 1
+      lastm = @user.gdata[-2][1]
+      actualm = @user.gdata.last[1]
+      @var = (((actualm.to_f / lastm.to_f) - 1) * 100).round(1)
+    else 
+      @var = 0 
+    end  
   end
 
   # Met a jours le donné du graphique et les sauvegarde eb bdd
@@ -163,8 +167,7 @@ class MovesController < ApplicationController
     cashflow = @user.cashflow
     @user.gdata == [] ? @user.gdata << [DateTime.now.to_date.strftime('%B'), cashflow] : ''
     if @user.gdata.last[1] != cashflow && @user.gdata.last[0] == DateTime.now.to_date.strftime('%B')
-      @user.gdata.last[1] =
-        cashflow
+      @user.gdata.last[1] = cashflow
     else
       ''
     end
@@ -180,7 +183,7 @@ class MovesController < ApplicationController
   def liquid
     snake = -1
     @user.gdata.each do |mois|
-      snake += (mois[1])
+      snake += (mois[1]).to_f
     end
     snake -= @user.p_expense
     @user.liquidity = snake

@@ -3,8 +3,6 @@ class User < ApplicationRecord
   has_many :moves
   has_many :projets
 
-  serialize :gdata, Array
-
   validates :first_name, uniqueness: true
   validates :last_name, uniqueness: true
 

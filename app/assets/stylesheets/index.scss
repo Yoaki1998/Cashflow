@@ -5,7 +5,6 @@
 @import url("components/graph.scss");
 @import url("components/titlezone.scss");
 @import url("components/loadbar.scss");
-@import url("components/projet.scss");
 
 #someselector {
     all: initial;
@@ -40,7 +39,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border-radius: 35px;
     top: -32px;
     position: absolute;
 }
@@ -52,6 +50,13 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
+}
+
+.bis {
+    justify-content: space-around;
+    width: 80vw;
+    top: 40vh;
+    height: 60vh;
 }
 
 
@@ -66,6 +71,10 @@ body {
         position: relative;
         top: 196px;
     }  
+
+    .bis {
+        top: 48vh;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -80,6 +89,10 @@ body {
     .inferieur {
         top: 130px;
         width: 100vw;
+    }
+
+    .bis {
+        top: 40vh;
     }
     
 }

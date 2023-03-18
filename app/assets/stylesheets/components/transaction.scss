@@ -1,3 +1,14 @@
+.projbutton {
+    background: #26268D;
+    border-radius: 15px;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    font-size: 2vh;
+    padding-inline: 1.8vw;
+    position: absolute;
+    bottom: -6.5vh;
+}
 .transaction {
     width: 38vw;
     height: 50vh;
@@ -6,6 +17,14 @@
     display: flex;
     justify-content: space-around;
 
+    .titlep {
+        width: 100%;
+        text-align: center;
+        font-size: 25px;
+        height: 15px;
+    }
+
+
     .transtable {
         border-collapse: collapse;
         margin: 25px 0;
@@ -13,15 +32,23 @@
         overflow: hidden;
         width: 38vw;
 
+        .centered_text {
+            text-align: center;
+        }
+
+        .first_row {
+            padding-left: 35px;
+        }
+
         th,td {
             padding: 9px;
-            font-size: 1.1vw;
+            font-size: 0.85vw;
         }
 
         thead {
             tr {
-                border: 1px solid #48485e;
-                background-color: #48485e;
+                border: 1px solid #31313d;
+                background-color: #31313d;
                 color: white;
                 text-align: left;
             }
@@ -55,6 +82,20 @@
                 border-bottom: 2px solid #48485e ;
             }
         }
+    }
+
+}
+
+.proj {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 60vh;
+
+    .pver {
+        height: 42vh;
+
     }
 }
 
@@ -108,13 +149,16 @@
     
     .transaction {
 
+        .titlep {
+            font-size: 5.5vw;
+        }
         .transtable {
             tr {
 
                 font-size: 1.2vh;
                 
-                td {
-                    font-size: 1.2vh;
+                tr {
+                    font-size: 0.8vh;
                 }
             }
         }
@@ -123,5 +167,4 @@
             font-size: 2.6vw;
         }
     }
-    
 }

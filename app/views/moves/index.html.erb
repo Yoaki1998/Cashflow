@@ -8,7 +8,7 @@
         <div class="option">
             <div class="tab"><%= link_to "DASHBOARD", moves_path %></div>
             <div class="tab"><%= link_to "PROJETS", projets_path %></div>
-            <div class="tab">ABOUT</div>
+            <div class="tab">A PROPOS</div>
         </div>
         <div class="user">
             <%= @user.first_name %> <%= @user.last_name %>
@@ -26,7 +26,7 @@
         <div class="option2">
             <div class="tab"><%= link_to "Dashboard", moves_path %></div>
             <div class="tab"><%= link_to "Projets", projets_path %></div>
-            <div class="tab">About</div>
+            <div class="tab">A Propos</div>
         </div>       
         <div class="user2">
             <div> Yoaki Niscoise </div>
@@ -38,8 +38,8 @@
     </div>
     <div class=supérieur>
         <div class=titlezone>
-            <h1>Welcome <%= @user.first_name %> <%= @user.last_name %> </h1>
-            <div>We are here to help you manage your money!</div>
+            <h1>Bienvenue <%= @user.first_name %> <%= @user.last_name %> </h1>
+            <div>Nous sommes là pour vous aider à gérer votre argent !</div>
         </div>
     </div>
 
@@ -91,10 +91,10 @@
                 <tbody>
                     <% @user.moves.sort.each do |move| %>
                         <tr>
-                            <td><%= move.name %></td> 
+                            <td class="first_row"><%= move.name %></td> 
                             <td><%= move.version %></td> 
                             <td><%= move.amount %> €</td> 
-                            <td><%= link_to edit_move_path(move.id) do %> <i class="fa-solid fa-pen-to-square"></i> <%end %> </td> 
+                            <td class="centered_text"><%= link_to edit_move_path(move.id) do %> <i class="fa-solid fa-pen-to-square"></i> <%end %> </td> 
                         </tr>
                     <%end%>
                 </tbody>

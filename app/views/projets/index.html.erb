@@ -8,7 +8,7 @@
         <div class="option">
             <div class="tab"><%= link_to "DASHBOARD", moves_path %></div>
             <div class="tab"><%= link_to "PROJETS", projets_path %></div>
-            <div class="tab">ABOUT</div>
+            <div class="tab">A PROPOS</div>
         </div>
         <div class="user">
             <%= @user.first_name %> <%= @user.last_name %>
@@ -26,8 +26,8 @@
         </div>
         <div class="option2">
             <div class="tab"><%= link_to "Dashboard", moves_path %></div>
-            <div class="tab"><%= link_to "Projets", projets_path %>t</div>
-            <div class="tab">About</div>
+            <div class="tab"><%= link_to "Projets", projets_path %></div>
+            <div class="tab">A Propos</div>
         </div>       
         <div class="user2">
             <div> Yoaki Niscoise </div>
@@ -39,22 +39,22 @@
     </div>
     <div class=supérieur>
         <div class=titlezone>
-            <h1>Welcome <%= @user.first_name %> <%= @user.last_name %> </h1>
-            <div>We are here to help you manage your money!</div>
+            <h1>Bienvenue <%= @user.first_name %> <%= @user.last_name %> </h1>
+            <div>Nous sommes là pour vous aider à gérer votre argent !</div>
         </div>
-    </div>
     <%= link_to "Nouveau projet", new_projet_path , class: "projbutton" %>  
-    <div class="inferieur proj">
-        <div class="transaction bis">
-            <h1 class="title">Projets à financé</h1>
-            <table class = transtable>
+    </div>
+    <div class="inferieur bis">
+        <div class="transaction proj">
+            <div class="titlep">Projets à financés</div>
+            <table class = "transtable pver">
                 <thead>
                     <tr>
-                        <th>Priority</th>
-                        <th>Name</th>
+                        <th>Priorité</th>
+                        <th>Nom</th>
                         <th>Montant</th>
-                        <th>Loading</th>
-                        <th>Left</th>
+                        <th>Etat</th>
+                        <th>Restant</th>
                         <th>Option</th>
                         <th>Financer</th>
                     </tr>
@@ -62,7 +62,7 @@
                 <tbody>
                     <% @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == false}.each do |projet| %>
                         <tr>
-                            <td><%= projet.priority %></td> 
+                            <td class="centered_text"><%= projet.priority %></td> 
                             <td><%= projet.name %></td> 
                             <td><%= projet.amount %> €</td> 
                             <td>
@@ -72,30 +72,30 @@
                                     </span>
                                 </div>
                             </td>
-                            <td><%= projet.month_left.round(1) %> month</td>
-                            <td><%= link_to edit_projet_path(projet) do %>  <i class="fa-solid fa-pen-to-square"></i> <%end %> </td> 
-                            <td><%= link_to projet_completion_path(projet) do %> <i class="fa-solid fa-money-bill"></i> Pay <%end %> </td> 
+                            <td><%= projet.month_left.round(1) %> mois</td>
+                            <td class="centered_text"><%= link_to edit_projet_path(projet) do %>  <i class="fa-solid fa-pen-to-square"></i> <%end %> </td> 
+                            <td class="centered_text"><%= link_to projet_completion_path(projet) do %> <i class="fa-solid fa-money-bill"></i> Payer <%end %> </td> 
                         </tr>
                     <%end%>
                 </tbody>
             </table>    
         </div>  
-        <div class="transaction bis">
-            <h1 class="title">Historique de projet</h1>
-            <table class = "transtable">
+        <div class="transaction proj">
+            <div class="titlep">Historique de projet</div>
+            <table class = "transtable pver">
                 <thead>
                     <tr>
-                        <th>Priority</th>
-                        <th>Name</th>
+                        <th>Priorité</th>
+                        <th>Nom</th>
                         <th>Montant</th>
-                        <th>Loading</th>
+                        <th>Etat</th>
                         <th>Option</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% @user.projets.sort{ |a, b| a.priority <=> b.priority }.find_all{|projet| projet.complete == true}.each do |projet| %>
                         <tr>
-                            <td><%= projet.priority %></td> 
+                            <td class="centered_text"><%= projet.priority %></td> 
                             <td><%= projet.name %></td> 
                             <td><%= projet.amount %> €</td> 
                             <td>
@@ -105,7 +105,7 @@
                                     </span>
                                 </div>
                             </td>
-                            <td><%= link_to edit_projet_path(projet) do %>  <i class="fa-solid fa-pen-to-square"></i> <%end %> </td> 
+                            <td class="centered_text"><%= link_to edit_projet_path(projet) do %>  <i class="fa-solid fa-pen-to-square"></i> <%end %> </td> 
                         </tr>
                     <%end%>
                 </tbody>

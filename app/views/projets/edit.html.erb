@@ -7,13 +7,15 @@
     <div class="option2">
         <div class="tab"><%= link_to "Dashboard", moves_path %></div>
         <div class="tab"><%= link_to "Projets", projets_path %></div>
-        <div class="tab">About</div>
+        <div class="tab">A Propos</div>
     </div>       
     <div class="user2">
-        <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
         <div> Yoaki Niscoise </div>
+        <%= link_to destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item" do %>
+          <i class="fa-solid fa-right-from-bracket"></i>
+        <%end%>
     </div>
-    <div class="menu">Menu</div>
+    <i class="fa-solid fa-bars menu"></i>
 </div>
 
 <div class="fakebody">
@@ -26,7 +28,7 @@
         <%end%>
       </div>
     <%else%>
-      <div class="titleform"> PROJET EDIT FORM</div>  
+      <div class="titleform"> MODIFIER LE PROJET</div>  
     <%end%>
 
     <%= form_with model: @projet, data: {turbo: false}  do |f| %>
@@ -43,7 +45,7 @@
             <%= f.number_field :priority %>
         </div>
         <div class="bfield">
-          <%= f.submit value:"MODIFIER", class:"submit b" %>
+          <%= f.submit value:"MODIFIER", class:"submit p1" %>
           <%= link_to "SUPPRIMER", projet_path(@projet), class: "deleteb", data: { turbo:true ,turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
         </div>
     <% end %>

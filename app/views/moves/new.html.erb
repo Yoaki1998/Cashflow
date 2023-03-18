@@ -7,7 +7,7 @@
     <div class="option2">
         <div class="tab"><%= link_to "Dashboard", moves_path %></div>
         <div class="tab"><%= link_to "Projets", projets_path %></div>
-        <div class="tab">About</div>
+        <div class="tab">A Propos</div>
     </div>       
     <div class="user2">
         <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item", class: "logout" %>
@@ -26,7 +26,7 @@
         <%end%>
       </div>
     <%else%>
-      <div class="titleform"> TRANSACTION FORM</div>  
+      <div class="titleform"> NOUVELLE TRANSACTION</div>  
     <%end%>
 
     <%= form_with model: @move, data: {turbo: false}  do |f| %>
